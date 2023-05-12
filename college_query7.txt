@@ -1,0 +1,1700 @@
+SELECT * FROM STD;
+SELECT * FROM STD
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> CREATE TABLE STD
+  2  (
+  3    NO NUMBER(3),
+  4    NAME VARCHAR2(10),
+  5    SEM  NUMBER(1),
+  6    MARKS NUMBER(5)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES
+  3  (100,'RAM',1,87);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (200,'SITA',2,99)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (300,'HANUMAN',1,76)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (100,'GITA',1,67)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (400,'MAYA',1,98)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (600,'RAMESH',3,87)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD
+  2  VALUES
+  3* (500,'KALPESH',4,NULL)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE NO > 300 ORDER BY NO;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       400 MAYA                1         98                                     
+       500 KALPESH             4                                                
+       600 RAMESH              3         87                                     
+
+SQL> SELECT * FROM STD WHERE NO > 300 ;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       400 MAYA                1         98                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+SQL> SELECT * FROM STD ORDER BY SEM,NAME DESC;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       400 MAYA                1         98                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       200 SITA                2         99                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL>  SELECT * FROM STD ORDER BY SEM,NAME;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 GITA                1         67                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL> SELECT * FROM STD ORDER BY SEM,NAME ASC;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 GITA                1         67                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL> SELECT * FROM STD ORDER BY SEM DESC,NAME ASC;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       500 KALPESH             4                                                
+       600 RAMESH              3         87                                     
+       200 SITA                2         99                                     
+       100 GITA                1         67                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       100 RAM                 1         87                                     
+
+7 rows selected.
+
+SQL>  SELECT * FROM STD ORDER BY SEM DESC,NAME;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       500 KALPESH             4                                                
+       600 RAMESH              3         87                                     
+       200 SITA                2         99                                     
+       100 GITA                1         67                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       100 RAM                 1         87                                     
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE SEM <> 3
+  2  ;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+       500 KALPESH             4                                                
+
+6 rows selected.
+
+SQL> SELECT * FROM STD WHERE SEM <> 3 ORDER BY SEM;
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+       200 SITA                2         99                                     
+       500 KALPESH             4                                                
+
+6 rows selected.
+
+SQL> SELECT * FROM STD WHERE NAME LIKE 'Ra%';
+
+no rows selected
+
+SQL> SELECT * FROM STD WHERE NAME LIKE 'RA%';
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> SELECT * FROM STD WHERE NAME LIKE '_A%';
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME LIKE '_a%'
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME LIKE '%U'
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME LIKE '%U%'
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       300 HANUMAN             1         76                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME LIKE '%M%SH'
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME LIKE '%M%'
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       300 HANUMAN             1         76                                     
+       400 MAYA                1         98                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE SEM IN (1,2)
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NAME IN ('RAM','SITA')
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 87 AND 87
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 87 AND 97
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 86 AND 87
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 80 AND 90
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 90 AND 86
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 90 AND 85
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN -90 AND 85
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 87 AND 90
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS BETWEEN 80 AND 90
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       100 RAM                 1         87                                     
+       600 RAMESH              3         87                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS NOT BETWEEN 80 AND 90
+SQL> /
+
+        NO NAME              SEM      MARKS                                     
+---------- ---------- ---------- ----------                                     
+       200 SITA                2         99                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+
+SQL> ALTER TABLE
+  2  (
+  3   ADD/
+  4  
+SQL> ALTER TABLE STD
+  2  ADD COLUMN A_DATE DATE;
+ADD COLUMN A_DATE DATE
+    *
+ERROR at line 2:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE STD
+  2* ADD A_DATE DATE
+SQL> /
+
+Table altered.
+
+SQL> DESC STD;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(3)
+ NAME                                               VARCHAR2(10)
+ SEM                                                NUMBER(1)
+ MARKS                                              NUMBER(5)
+ A_DATE                                             DATE
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87                                     
+       200 SITA                2         99                                     
+       300 HANUMAN             1         76                                     
+       100 GITA                1         67                                     
+       400 MAYA                1         98                                     
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL> UPDATE STD
+  2  A_DATE='01-JAN-2008'
+  3  WHERE NO=100;
+A_DATE='01-JAN-2008'
+      *
+ERROR at line 2:
+ORA-00971: missing SET keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STD
+  2  SET
+  3  A_DATE='01-JAN-2008'
+  4* WHERE NO=100
+SQL> /
+
+2 rows updated.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STD
+  2  SET
+  3  A_DATE='15-JAN-2008'
+  4* WHERE NO=200
+SQL> /
+
+1 row updated.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STD
+  2  SET
+  3  A_DATE='1-FEB-2008'
+  4* WHERE NO=300 OR NO=400
+SQL> /
+
+2 rows updated.
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87                                     
+       500 KALPESH             4                                                
+
+7 rows selected.
+
+SQL> UPDATE STD
+  2  SETA_DATE='1-MAR-2008'
+  3  WHERE NO=600 OR NO=500
+  4  ;
+SETA_DATE='1-MAR-2008'
+         *
+ERROR at line 2:
+ORA-00971: missing SET keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  UPDATE STD
+  2  SET
+  3  A_DATE='1-MAR-2008'
+  4* WHERE NO=600 OR NO=500
+  5  /
+
+2 rows updated.
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE A_DATE BETWEEN '05-JAN-08' AND '31-JAN-08';
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       200 SITA                2         99 15-JAN-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE A_DATE BETWEEN '05-JAN-08' AND '15-JAN-08'
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       200 SITA                2         99 15-JAN-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE A_DATE BETWEEN '01-JAN-08' AND '15-JAN-08'
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       100 GITA                1         67 01-JAN-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE A_DATE BETWEEN '05-JAN-08' AND '1-JAN-08'
+SQL> /
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE A_DATE NOT BETWEEN '05-JAN-08' AND '1-JAN-08'
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE NO>300 OR SEM < 2 ORDER BY NAME;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 GITA                1         67 01-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       500 KALPESH             4            01-MAR-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       100 RAM                 1         87 01-JAN-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+
+6 rows selected.
+
+SQL> SELECT * FROM STD WHERE NO <>200 AND SEM <> 1 AND MARKS>=87;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       600 RAMESH              3         87 01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 AND SEM <> 1
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+SQL> SELECT * FROM STD WHERE NO <>200 AND SEM <> 1 AND MARKS<=87;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       600 RAMESH              3         87 01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 AND SEM <> 1 AND MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       600 RAMESH              3         87 01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 OR SEM <> 1 AND MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+COURSE_MASTER                  TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMP3                           TABLE                                            
+EMP42                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+EMP_DEF                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMP_PK                         TABLE                                            
+EMP_PK1                        TABLE                                            
+FEE_DETAIL                     TABLE                                            
+FEE_MASTER                     TABLE                                            
+ITEM                           TABLE                                            
+PRODUCT                        TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+STD                            TABLE                                            
+STD_DETAIL                     TABLE                                            
+STD_DETAIL1                    TABLE                                            
+STD_FEE                        TABLE                                            
+STD_MASTER                     TABLE                                            
+STUDENT_DETAIL                 TABLE                                            
+STUDENT_MASTER                 TABLE                                            
+TEMP                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+USER_MASTER                    TABLE                                            
+USER_ROLE                      TABLE                                            
+USER_ROLE_MENU                 TABLE                                            
+
+36 rows selected.
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE NO <>200 OR SEM <> 1 AND MARKS>=87;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 AND SEM <> 1 OR MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+SQL> E
+SP2-0042: unknown command "E" - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 AND (SEM <> 1 OR MARKS>=87)
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE (NO <>200 AND SEM <> 1) OR MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 OR SEM <> 1 AND MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE (NO <>200 OR SEM <> 1) AND MARKS>=87
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE NO <>200 OR (SEM <> 1 AND MARKS>=87)
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT * FROM STD WHERE MARKS=NULL;
+
+no rows selected
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD WHERE MARKS IS NULL
+SQL> /
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       500 KALPESH             4            01-MAR-08                           
+
+SQL> SELECT LENGTH(NAME), LENGTH(NO || NAME) FROM STD;
+
+LENGTH(NAME) LENGTH(NO||NAME)                                                   
+------------ ----------------                                                   
+           3                6                                                   
+           4                7                                                   
+           7               10                                                   
+           4                7                                                   
+           4                7                                                   
+           6                9                                                   
+           7               10                                                   
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LENGTH(NO), LENGTH(NAME), LENGTH(NO || NAME) FROM STD
+SQL> /
+
+LENGTH(NO) LENGTH(NAME) LENGTH(NO||NAME)                                        
+---------- ------------ ----------------                                        
+         3            3                6                                        
+         3            4                7                                        
+         3            7               10                                        
+         3            4                7                                        
+         3            4                7                                        
+         3            6                9                                        
+         3            7               10                                        
+
+7 rows selected.
+
+SQL> SELECT NO || NAME FROM STD;
+
+NO||NAME                                                                        
+--------------------------------------------------                              
+100RAM                                                                          
+200SITA                                                                         
+300HANUMAN                                                                      
+100GITA                                                                         
+400MAYA                                                                         
+600RAMESH                                                                       
+500KALPESH                                                                      
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NO ||' ' || NAME FROM STD
+SQL> /
+
+NO||''||NAME                                                                    
+---------------------------------------------------                             
+100 RAM                                                                         
+200 SITA                                                                        
+300 HANUMAN                                                                     
+100 GITA                                                                        
+400 MAYA                                                                        
+600 RAMESH                                                                      
+500 KALPESH                                                                     
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NO ||' ' || NAME AS "NAME" FROM STD
+SQL> /
+
+NAME                                                                            
+---------------------------------------------------                             
+100 RAM                                                                         
+200 SITA                                                                        
+300 HANUMAN                                                                     
+100 GITA                                                                        
+400 MAYA                                                                        
+600 RAMESH                                                                      
+500 KALPESH                                                                     
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NO ||' ' || NAME AS NAME FROM STD
+SQL> /
+
+NAME                                                                            
+---------------------------------------------------                             
+100 RAM                                                                         
+200 SITA                                                                        
+300 HANUMAN                                                                     
+100 GITA                                                                        
+400 MAYA                                                                        
+600 RAMESH                                                                      
+500 KALPESH                                                                     
+
+7 rows selected.
+
+SQL> SELECT LPAD(NO,10,'*') FROM STD;
+
+LPAD(NO,10                                                                      
+----------                                                                      
+*******100                                                                      
+*******200                                                                      
+*******300                                                                      
+*******100                                                                      
+*******400                                                                      
+*******600                                                                      
+*******500                                                                      
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,10,'*'), LPAD(NAME,10,'!') FROM STD
+SQL> /
+
+LPAD(NO,10 LPAD(NAME,                                                           
+---------- ----------                                                           
+*******100 !!!!!!!RAM                                                           
+*******200 !!!!!!SITA                                                           
+*******300 !!!HANUMAN                                                           
+*******100 !!!!!!GITA                                                           
+*******400 !!!!!!MAYA                                                           
+*******600 !!!!RAMESH                                                           
+*******500 !!!KALPESH                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,10,' '), LPAD(NAME,10,' ') FROM STD
+SQL> /
+
+LPAD(NO,10 LPAD(NAME,                                                           
+---------- ----------                                                           
+       100        RAM                                                           
+       200       SITA                                                           
+       300    HANUMAN                                                           
+       100       GITA                                                           
+       400       MAYA                                                           
+       600     RAMESH                                                           
+       500    KALPESH                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,10,' ') AS NO, LPAD(NAME,10,' ') AS NAME FROM STD
+SQL> /
+
+NO         NAME                                                                 
+---------- ----------                                                           
+       100        RAM                                                           
+       200       SITA                                                           
+       300    HANUMAN                                                           
+       100       GITA                                                           
+       400       MAYA                                                           
+       600     RAMESH                                                           
+       500    KALPESH                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,20,' ') AS NO, LPAD(NAME,20,' ') AS NAME FROM STD
+SQL> /
+
+NO                   NAME                                                       
+-------------------- --------------------                                       
+                 100                  RAM                                       
+                 200                 SITA                                       
+                 300              HANUMAN                                       
+                 100                 GITA                                       
+                 400                 MAYA                                       
+                 600               RAMESH                                       
+                 500              KALPESH                                       
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,2,' ') AS NO, LPAD(NAME,2,' ') AS NAME FROM STD
+SQL> /
+
+NO NA                                                                           
+-- --                                                                           
+10 RA                                                                           
+20 SI                                                                           
+30 HA                                                                           
+10 GI                                                                           
+40 MA                                                                           
+60 RA                                                                           
+50 KA                                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,2,' ') AS NO, LPAD(NAME,3,' ') AS NAME FROM STD
+SQL> /
+
+NO NAM                                                                          
+-- ---                                                                          
+10 RAM                                                                          
+20 SIT                                                                          
+30 HAN                                                                          
+10 GIT                                                                          
+40 MAY                                                                          
+60 RAM                                                                          
+50 KAL                                                                          
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,2,' ') AS NO, LPAD(NAME,4,' ') AS NAME FROM STD
+SQL> /
+
+NO NAME                                                                         
+-- ----                                                                         
+10  RAM                                                                         
+20 SITA                                                                         
+30 HANU                                                                         
+10 GITA                                                                         
+40 MAYA                                                                         
+60 RAME                                                                         
+50 KALP                                                                         
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NO,2,' ') AS NO, LPAD(NAME,4,'*') AS NAME FROM STD
+SQL> /
+
+NO NAME                                                                         
+-- ----                                                                         
+10 *RAM                                                                         
+20 SITA                                                                         
+30 HANU                                                                         
+10 GITA                                                                         
+40 MAYA                                                                         
+60 RAME                                                                         
+50 KALP                                                                         
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LPAD(NAME,5) AS NAME FROM STD
+SQL> /
+
+NAME                                                                            
+-----                                                                           
+  RAM                                                                           
+ SITA                                                                           
+HANUM                                                                           
+ GITA                                                                           
+ MAYA                                                                           
+RAMES                                                                           
+KALPE                                                                           
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LOWER(NAME,5) AS NAME FROM STD
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LOWER(NAME) AS NAME FROM STD
+SQL> /
+
+NAME                                                                            
+----------                                                                      
+ram                                                                             
+sita                                                                            
+hanuman                                                                         
+gita                                                                            
+maya                                                                            
+ramesh                                                                          
+kalpesh                                                                         
+
+7 rows selected.
+
+SQL> SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, ISTR(NAME,'A',1,2) AS FORTH FROM STD;
+SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, ISTR(NAME,'A',1,2) AS FORTH FROM STD
+                                                                                              *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, ISTR(NAME,'A',1,2) AS FORTH FROM STD
+SQL> ed
+Wrote file afiedt.buf
+
+  1* SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, INSTR(NAME,'A',1,2) AS FORTH FROM STD
+SQL> /
+
+     FIRST     SECOND      THIRD      FORTH                                     
+---------- ---------- ---------- ----------                                     
+         2          2          0          0                                     
+         4          4          4          0                                     
+         2          2          6          6                                     
+         4          4          4          0                                     
+         2          2          4          4                                     
+         2          2          0          0                                     
+         2          2          0          0                                     
+
+7 rows selected.
+
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SQL> SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, I
+SP2-0734: unknown command beginning "SQL> SELEC..." - rest of line ignored.
+SQL> STR(NAME,'A',1,2) AS FORTH FROM STD;
+SP2-0734: unknown command beginning "STR(NAME,'..." - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD
+SQL> SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, INSTR(NAME,'A',1,2) AS FORTH FROM STD;
+
+     FIRST     SECOND      THIRD      FORTH                                     
+---------- ---------- ---------- ----------                                     
+         2          2          0          0                                     
+         4          4          4          0                                     
+         2          2          6          6                                     
+         4          4          4          0                                     
+         2          2          4          4                                     
+         2          2          0          0                                     
+         2          2          0          0                                     
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, INSTR(NAME,'A',1,2) AS FORTH FROM STD
+SQL> SELECT * FROM STD;
+
+        NO NAME              SEM      MARKS A_DATE                              
+---------- ---------- ---------- ---------- ---------                           
+       100 RAM                 1         87 01-JAN-08                           
+       200 SITA                2         99 15-JAN-08                           
+       300 HANUMAN             1         76 01-FEB-08                           
+       100 GITA                1         67 01-JAN-08                           
+       400 MAYA                1         98 01-FEB-08                           
+       600 RAMESH              3         87 01-MAR-08                           
+       500 KALPESH             4            01-MAR-08                           
+
+7 rows selected.
+
+SQL> SELECT INSTR(NAME,'A') AS FIRST, INSTR(NAME,'A',1,1) AS SECOND, INSTR(NAME,'A',3,1) AS THIRD, INSTR(NAME,'A',1,2) AS FORTH FROM STD;
+
+     FIRST     SECOND      THIRD      FORTH                                     
+---------- ---------- ---------- ----------                                     
+         2          2          0          0                                     
+         4          4          4          0                                     
+         2          2          6          6                                     
+         4          4          4          0                                     
+         2          2          4          4                                     
+         2          2          0          0                                     
+         2          2          0          0                                     
+
+7 rows selected.
+
+SQL> CREATE TABLE SOUND
+  2  (
+  3    NAME VARCHAR2(15)
+  4  );
+
+Table created.
+
+SQL> INSERT INTO SOUND
+  2  VALUES
+  3  ('COLOUR');
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO SOUND
+  2  VALUES
+  3* ('COLOR')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO SOUND
+  2  VALUES
+  3* ('COTTON')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO SOUND
+  2  VALUES
+  3* ('COVER')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO SOUND
+  2  VALUES
+  3* ('COVOR')
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM SOUND;
+
+NAME                                                                            
+---------------                                                                 
+COLOUR                                                                          
+COLOR                                                                           
+COTTON                                                                          
+COVER                                                                           
+COVOR                                                                           
+
+SQL> SELECT * FROM SOUND WHERE SOUNDEX(NAME) = SOUNDEX('COLOR');
+
+NAME                                                                            
+---------------                                                                 
+COLOUR                                                                          
+COLOR                                                                           
+
+SQL> INSERT INTO SOUND
+  2  VALUES
+  3  ('GEETA');
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO SOUND
+  2  VALUES
+  3* ('GITA')
+SQL> /
+
+1 row created.
+
+SQL>  SELECT * FROM SOUND WHERE SOUNDEX(NAME) = SOUNDEX('GITA');
+
+NAME                                                                            
+---------------                                                                 
+GEETA                                                                           
+GITA                                                                            
+
+SQL> SELECT SIGN(-123), SIGN(123), SIGN(0) FROM DUAL;
+
+SIGN(-123)  SIGN(123)    SIGN(0)                                                
+---------- ---------- ----------                                                
+        -1          1          0                                                
+
+SQL> SELECT MIN(MARKS), MAX(MARKS), ABS( MIN(MARKS) - MAX(MARKS) ) FROM STD;
+
+MIN(MARKS) MAX(MARKS) ABS(MIN(MARKS)-MAX(MARKS))                                
+---------- ---------- --------------------------                                
+        67         99                         32                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MIN(MARKS), MAX(MARKS),  MIN(MARKS) - MAX(MARKS)  FROM STD
+SQL> /
+
+MIN(MARKS) MAX(MARKS) MIN(MARKS)-MAX(MARKS)                                     
+---------- ---------- ---------------------                                     
+        67         99                   -32                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LEAST(MARKS), GRATEST(MARKS)  FROM STD
+SQL> /
+SELECT LEAST(MARKS), GRATEST(MARKS)  FROM STD
+                     *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LEAST(MARKS) FROM STD
+SQL> /
+
+LEAST(MARKS)                                                                    
+------------                                                                    
+          87                                                                    
+          99                                                                    
+          76                                                                    
+          67                                                                    
+          98                                                                    
+          87                                                                    
+                                                                                
+
+7 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LEAST(12,34,0,56,99,-89) FROM STD
+SQL> /
+
+LEAST(12,34,0,56,99,-89)                                                        
+------------------------                                                        
+                     -89                                                        
+                     -89                                                        
+                     -89                                                        
+                     -89                                                        
+                     -89                                                        
+                     -89                                                        
+                     -89                                                        
+
+7 rows selected.
+
+SQL> EDIT FORMAT1.SQL
+
+SQL> CREATE TABLE FORMAT
+  2  (
+  3    VAL1 NUMBER (10,2),
+  4    VAL2 NUMBER (10,2),
+  5    VAL3 NUMBER (10,2),
+  6    VAL4 NUMBER (10,2)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO FORMAT
+  2  VALUES
+  3  (10001.3,40000,80000,NULL);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO FORMAT
+  2  VALUES
+  3* (23000.3,65213.2,456321.01,NULL)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO FORMAT
+  2  VALUES
+  3* (7896325.6,1254.36,100,12)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO FORMAT
+  2  VALUES
+  3* (0,-5000,-600,NULL)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM FORMAT;
+
+      VAL1       VAL2       VAL3       VAL4                                     
+---------- ---------- ---------- ----------                                     
+   10001.3      40000      80000                                                
+   23000.3    65213.2  456321.01                                                
+ 7896325.6    1254.36        100         12                                     
+         0      -5000       -600                                                
+
+SQL> EDIT FROMAT1.SQL
+
+SQL> START FROMAT1.SQL;
+
+      VAL1       VAL2       VAL3       VAL4                                     
+---------- ---------- ---------- ----------                                     
+   10001.3      40000      80000                                                
+   23000.3    65213.2  456321.01                                                
+ 7896325.6    1254.36        100         12                                     
+         0      -5000       -600                                                
+
+SP2-0246: Illegal FORMAT string "B.00,000,00.00"
+SP2-0158: unknown COLUMN option "MI"
+
+                         VALUE                                                  
+                             3  VALUE                                           
+      VAL1       VAL2      ONLY      4                                          
+---------- ---------- --------- ------                                          
+   10001.3      40000    80000                                                  
+   23000.3    65213.2   456321                                                  
+ 7896325.6    1254.36      100    1200                                          
+         0      -5000     <600>                                                 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM FORMAT
+SQL> EDIT FORMAT1.SQL
+
+SQL> EDIT FROMAT1.SQL
+
+SQL> /
+
+                         VALUE                                                  
+                             3  VALUE                                           
+      VAL1       VAL2      ONLY      4                                          
+---------- ---------- --------- ------                                          
+   10001.3      40000    80000                                                  
+   23000.3    65213.2   456321                                                  
+ 7896325.6    1254.36      100    1200                                          
+         0      -5000     <600>                                                 
+
+SQL>  EDIT FORMAT1.SQL
+
+SQL> EDIT FORMAT1.SQL;
+
+SQL> EDIT FROMAT1.SQL
+
+SQL> START FROMAT1.SQL;
+
+      VAL1       VAL2       VAL3       VAL4                                     
+---------- ---------- ---------- ----------                                     
+   10001.3      40000      80000                                                
+   23000.3    65213.2  456321.01                                                
+ 7896325.6    1254.36        100         12                                     
+         0      -5000       -600                                                
+
+SP2-0158: unknown COLUMN option "MI"
+
+                            VALUE                                               
+       VALUE                    3   VALUE                                       
+            1       VAL2      ONLY       4                                      
+------------- ---------- --------- -------                                      
+ 00,100,01.30      40000    80000                                               
+ 00,230,00.30    65213.2   456321                                               
+ 78,963,25.60    1254.36      100    12000                                      
+                   -5000     <600>                                              
+
+SQL> SELECT SEM FROM STD GROUP BY SEM;
+
+       SEM                                                                      
+----------                                                                      
+         1                                                                      
+         2                                                                      
+         3                                                                      
+         4                                                                      
+
+SQL> SELECT SEM FROM STD GROUP BY SEM HAVING COUNT(*) > 2;
+
+       SEM                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM SUM(MARKS) FROM STD GROUP BY SEM
+SQL> /
+SELECT SEM SUM(MARKS) FROM STD GROUP BY SEM
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(MARKS) FROM STD GROUP BY SEM
+SQL> /
+
+       SEM SUM(MARKS)                                                           
+---------- ----------                                                           
+         1        328                                                           
+         2         99                                                           
+         3         87                                                           
+         4                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(MARKS) FROM STD GROUP BY SEM HAVING SEM IN(1,2)
+SQL> /
+
+       SEM SUM(MARKS)                                                           
+---------- ----------                                                           
+         1        328                                                           
+         2         99                                                           
+
+SQL> CREATE TABLE CHK_MST
+  2  (
+  3    ACC_NO NUMBER(5),
+  4    CHK_NO NUMBER(6),
+  5    CHK_DATE DATE,
+  6   );
+ )
+ *
+ERROR at line 6:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE CHK_MST
+  2  (
+  3    ACC_NO NUMBER(5),
+  4    CHK_NO NUMBER(6),
+  5    CHK_DATE DATE
+  6*  )
+SQL> /
+
+Table created.
+
+SQL> CREATE TABLE CHK_DET
+  2  (
+  3    ACC_NO NUMBER(5),
+  4    W_AMT  NUMBER(8,2),
+  5    BAL    NUMBER(8,2)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO CHK_MST
+  2  VALUES
+  3  (1995,452333,'17-MAR-08');
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO CHK_MST
+  2  VALUES
+  3* (2000,452355,'16-MAR-08')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO CHK_MST
+  2  VALUES
+  3* (1018,223342,'18-MAR-08')
+SQL> /
+
+1 row created.
+
+SQL> INSERT INTO CHK_DET
+  2  (
+  3  /
+(
+*
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO CHK_DET
+  2  VALUES
+  3  (1995,2000,-2000);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO CHK_DET
+  2  VALUES
+  3* (1995,500,-2500)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO CHK_DET
+  2  VALUES
+  3* (1018,6000,-6000)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO CHK_DET
+  2  VALUES
+  3* (1018,1000,-7000)
+SQL> /
+
+1 row created.
+
+SQL> SELECT CHK_MST.ACC_NO, CHK_DET.W_AMT, CHK_MST.CHK_DATE
+  2  FROM   CHK_MST, CHK_DET
+  3  WHERE CHK_MST.ACC_NO = CHK_DET.ACC_NO
+  4  ORDER BY ACC_NO;
+
+    ACC_NO      W_AMT CHK_DATE                                                  
+---------- ---------- ---------                                                 
+      1018       6000 18-MAR-08                                                 
+      1018       1000 18-MAR-08                                                 
+      1995       2000 17-MAR-08                                                 
+      1995        500 17-MAR-08                                                 
+
+SQL> QUIT

@@ -1,0 +1,1025 @@
+create table emp4
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    primary key(p_no,p_name)
+  7  );
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp41
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    primary key(p_no,p_name) pkcom
+  7* )
+SQL> /
+(
+*
+ERROR at line 2:
+ORA-00922: missing or invalid option 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp41
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    primary key pkcom (p_no,p_name)
+  7* )
+SQL> /
+  primary key pkcom (p_no,p_name)
+              *
+ERROR at line 6:
+ORA-00906: missing left parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp41
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint primary key pkcom (p_no,p_name)
+  7* )
+SQL> /
+  constraint primary key pkcom (p_no,p_name)
+                               *
+ERROR at line 6:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp41
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint pkcom primary key(p_no,p_name)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp411
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint pkcom1 primary key(p_no)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp4111
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint nnno not null(p_no)
+  7* )
+SQL> /
+  constraint nnno not null(p_no)
+                  *
+ERROR at line 6:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp4111
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint nnno unique(p_no)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp42
+  2  (
+  3    p_no number(3),
+  4    p_name varchar2(10),
+  5    p_value number(12),
+  6    constraint nnno1 NOT NULL(p_no)
+  7* )
+SQL> /
+  constraint nnno1 NOT NULL(p_no)
+                   *
+ERROR at line 6:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  create table emp42
+  2  (
+  3    p_no number(3) CONSTRAINT NN NOT NULL,
+  4    p_name varchar2(10),
+  5    p_value number(12)
+  6* )
+SQL> /
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMP3                           TABLE                                            
+EMP4                           TABLE                                            
+EMP41                          TABLE                                            
+EMP411                         TABLE                                            
+EMP4111                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+EMP42                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+EMP_PK                         TABLE                                            
+EMP_PK1                        TABLE                                            
+ITEM                           TABLE                                            
+PRODUCT                        TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+STD_DETAIL                     TABLE                                            
+STD_DETAIL1                    TABLE                                            
+STD_FEE                        TABLE                                            
+STD_MASTER                     TABLE                                            
+TEMP                           TABLE                                            
+
+30 rows selected.
+
+SQL> DROP TBALE EMP4111 ;
+DROP TBALE EMP4111 
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> DROP TABLE EMP4111 ;
+
+Table dropped.
+
+SQL> DROP TABLE EMP411  ;
+
+Table dropped.
+
+SQL> DROP TABLE EMP41;
+
+Table dropped.
+
+SQL> DROP TABLE EMP4    ;
+
+Table dropped.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMP3                           TABLE                                            
+EMP42                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+EMP_PK                         TABLE                                            
+EMP_PK1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ITEM                           TABLE                                            
+PRODUCT                        TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+STD_DETAIL                     TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STD_DETAIL1                    TABLE                                            
+STD_FEE                        TABLE                                            
+STD_MASTER                     TABLE                                            
+TEMP                           TABLE                                            
+
+26 rows selected.
+
+SQL> select lower('ADARSH') FROM DUAL;
+
+LOWER(                                                                          
+------                                                                          
+adarsh                                                                          
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select UPPER('adarsh ADARSH') FROM DUAL
+SQL> /
+
+UPPER('ADARSH                                                                   
+-------------                                                                   
+ADARSH ADARSH                                                                   
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select initcap('adarsh ADARSH') FROM DUAL
+SQL> /
+
+INITCAP('ADAR                                                                   
+-------------                                                                   
+Adarsh Adarsh                                                                   
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH') FROM DUAL
+SQL> /
+select substr('adarsh ADARSH') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00938: not enough arguments for function 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',0,1) FROM DUAL
+SQL> /
+
+S                                                                               
+-                                                                               
+a                                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',1,1) FROM DUAL
+SQL> /
+
+S                                                                               
+-                                                                               
+a                                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',1,6) FROM DUAL
+SQL> /
+
+SUBSTR                                                                          
+------                                                                          
+adarsh                                                                          
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',3,6) FROM DUAL
+SQL> /
+
+SUBSTR                                                                          
+------                                                                          
+arsh A                                                                          
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',3) FROM DUAL
+SQL> /
+
+SUBSTR('ADA                                                                     
+-----------                                                                     
+arsh ADARSH                                                                     
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',3,1) FROM DUAL
+SQL> /
+
+S                                                                               
+-                                                                               
+a                                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',3,-1) FROM DUAL
+SQL> /
+
+S                                                                               
+-                                                                               
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',5,-1) FROM DUAL
+SQL> /
+
+S                                                                               
+-                                                                               
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',5,20) FROM DUAL
+SQL> /
+
+SUBSTR('A                                                                       
+---------                                                                       
+sh ADARSH                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('adarsh ADARSH',5,2) FROM DUAL
+SQL> 
+SQL> /
+
+SU                                                                              
+--                                                                              
+sh                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select length('adarsh') FROM DUAL
+SQL> /
+
+LENGTH('ADARSH')                                                                
+----------------                                                                
+               6                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select length('') FROM DUAL
+SQL> /
+
+LENGTH('')                                                                      
+----------                                                                      
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select length(' ') FROM DUAL
+SQL> /
+
+LENGTH('')                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select length(NULL) FROM DUAL
+SQL> /
+
+LENGTH(NULL)                                                                    
+------------                                                                    
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select ltrim('***adarsh patel***','*') FROM DUAL
+SQL> /
+
+LTRIM('***ADARS                                                                 
+---------------                                                                 
+adarsh patel***                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select ltrim('***adarsh patel***') FROM DUAL
+SQL> /
+
+LTRIM('***ADARSHPA                                                              
+------------------                                                              
+***adarsh patel***                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select ltrim('   adarsh patel  ') FROM DUAL
+SQL> /
+
+LTRIM('ADARSHP                                                                  
+--------------                                                                  
+adarsh patel                                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select rtrim('   adarsh patel  ') FROM DUAL
+SQL> /
+
+RTRIM('ADARSHPA                                                                 
+---------------                                                                 
+   adarsh patel                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select trim('   adarsh patel  ') FROM DUAL
+SQL> /
+
+TRIM('ADARSH                                                                    
+------------                                                                    
+adarsh patel                                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select trim('   adarsh  patel  ') FROM DUAL
+SQL> /
+
+TRIM('ADARSHP                                                                   
+-------------                                                                   
+adarsh  patel                                                                   
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select alltrim('   adarsh  patel  ') FROM DUAL
+SQL> /
+select alltrim('   adarsh  patel  ') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select atrim('   adarsh  patel  ') FROM DUAL
+SQL> /
+select atrim('   adarsh  patel  ') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select intrim('   adarsh  patel  ') FROM DUAL
+SQL> /
+select intrim('   adarsh  patel  ') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('5000') FROM DUAL
+SQL> /
+
+TO_NUMBER('5000')                                                               
+-----------------                                                               
+             5000                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('A') FROM DUAL
+SQL> /
+select to_number('A') FROM DUAL
+       *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number(A) FROM DUAL
+SQL> /
+select to_number(A) FROM DUAL
+                 *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('z') FROM DUAL
+SQL> /
+select to_number('z') FROM DUAL
+       *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('1,100') FROM DUAL
+SQL> /
+select to_number('1,100') FROM DUAL
+       *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('1100') FROM DUAL
+SQL> /
+
+TO_NUMBER('1100')                                                               
+-----------------                                                               
+             1100                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_number('1100.56') FROM DUAL
+SQL> /
+
+TO_NUMBER('1100.56')                                                            
+--------------------                                                            
+             1100.56                                                            
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_char('1100.56') FROM DUAL
+SQL> /
+
+TO_CHAR                                                                         
+-------                                                                         
+1100.56                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_char(1100.56) FROM DUAL
+SQL> /
+
+TO_CHAR                                                                         
+-------                                                                         
+1100.56                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_char(116) FROM DUAL
+SQL> /
+
+TO_                                                                             
+---                                                                             
+116                                                                             
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_char(116) FROM DUAL
+SQL> 
+SQL> /
+
+TO_                                                                             
+---                                                                             
+116                                                                             
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMP3                           TABLE                                            
+EMP42                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+EMP_PK                         TABLE                                            
+EMP_PK1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ITEM                           TABLE                                            
+PRODUCT                        TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+STD_DETAIL                     TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STD_DETAIL1                    TABLE                                            
+STD_FEE                        TABLE                                            
+STD_MASTER                     TABLE                                            
+TEMP                           TABLE                                            
+
+26 rows selected.
+
+SQL> select * from product;
+
+no rows selected
+
+SQL>  select * from ITEM    ;
+
+      I_NO    I_PRICE                                                           
+---------- ----------                                                           
+         1        500                                                           
+         5        500                                                           
+         2        500                                                           
+
+SQL> select * from BONUS;
+
+no rows selected
+
+SQL>  select * from ACCOUNT         ;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+     -2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL>  select * from CLMST   ;
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN       CTEL                                                           
+---------- ----------                                                           
+      1001 adarsh                    kanbiwad                  bhavnagar       N
+    364001     525252                                                           
+                                                                                
+      1002 Adarsh S. Patel           ghogha road               bhavnagar       W
+    364003     525252                                                           
+                                                                                
+      1003 Tapan                     Waghawadi road            bhavnagar       E
+    364002     525252                                                           
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN       CTEL                                                           
+---------- ----------                                                           
+      1004 Shivang                   Anannagar                 bhavnagar       E
+    364002     525252                                                           
+                                                                                
+      1004 Shivang                   Anannagar                 bhavnagar       E
+    364002     525252                                                           
+                                                                                
+      1004 Hemal                     Anannagar                 bhavnagar       E
+    364002     525252                                                           
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN       CTEL                                                           
+---------- ----------                                                           
+      1006 Samir                     Anannagar                 DELHI           W
+    364002     525252                                                           
+                                                                                
+      1007 Pranav                    Anannagar                 DELHI           W
+    364002     525252                                                           
+                                                                                
+      1007 Parthiv                   Anannagar                 DELHI           W
+    364002     525252                                                           
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN       CTEL                                                           
+---------- ----------                                                           
+      1009 Ashish                    Anannagar                 DELHI           W
+    364002     525252                                                           
+                                                                                
+
+10 rows selected.
+
+SQL> desc
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> select
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> help select;
+SP2-0172: No HELP available.
+SQL> help initcap
+SP2-0172: No HELP available.
+SQL> help lower;
+SP2-0172: No HELP available.
+SQL> desc
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> desc CLMST;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNO                                                NUMBER(4)
+ CNM                                                VARCHAR2(25)
+ CADD                                               VARCHAR2(25)
+ CCITY                                              VARCHAR2(15)
+ CREGION                                            CHAR(1)
+ CPIN                                               NUMBER(6)
+ CTEL                                               NUMBER(20)
+
+SQL> select cno,cnm, upper(cnm) from CLMST;
+
+       CNO CNM                       UPPER(CNM)                                 
+---------- ------------------------- -------------------------                  
+      1001 adarsh                    ADARSH                                     
+      1002 Adarsh S. Patel           ADARSH S. PATEL                            
+      1003 Tapan                     TAPAN                                      
+      1004 Shivang                   SHIVANG                                    
+      1004 Shivang                   SHIVANG                                    
+      1004 Hemal                     HEMAL                                      
+      1006 Samir                     SAMIR                                      
+      1007 Pranav                    PRANAV                                     
+      1007 Parthiv                   PARTHIV                                    
+      1009 Ashish                    ASHISH                                     
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cno,cnm, upper(cnm), lower(cnm) from CLMST
+SQL> /
+
+       CNO CNM                       UPPER(CNM)                                 
+---------- ------------------------- -------------------------                  
+LOWER(CNM)                                                                      
+-------------------------                                                       
+      1001 adarsh                    ADARSH                                     
+adarsh                                                                          
+                                                                                
+      1002 Adarsh S. Patel           ADARSH S. PATEL                            
+adarsh s. patel                                                                 
+                                                                                
+      1003 Tapan                     TAPAN                                      
+tapan                                                                           
+                                                                                
+
+       CNO CNM                       UPPER(CNM)                                 
+---------- ------------------------- -------------------------                  
+LOWER(CNM)                                                                      
+-------------------------                                                       
+      1004 Shivang                   SHIVANG                                    
+shivang                                                                         
+                                                                                
+      1004 Shivang                   SHIVANG                                    
+shivang                                                                         
+                                                                                
+      1004 Hemal                     HEMAL                                      
+hemal                                                                           
+                                                                                
+
+       CNO CNM                       UPPER(CNM)                                 
+---------- ------------------------- -------------------------                  
+LOWER(CNM)                                                                      
+-------------------------                                                       
+      1006 Samir                     SAMIR                                      
+samir                                                                           
+                                                                                
+      1007 Pranav                    PRANAV                                     
+pranav                                                                          
+                                                                                
+      1007 Parthiv                   PARTHIV                                    
+parthiv                                                                         
+                                                                                
+
+       CNO CNM                       UPPER(CNM)                                 
+---------- ------------------------- -------------------------                  
+LOWER(CNM)                                                                      
+-------------------------                                                       
+      1009 Ashish                    ASHISH                                     
+ashish                                                                          
+                                                                                
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, upper(cnm), lower(cnm) from CLMST
+SQL> /
+
+CNM                       UPPER(CNM)                LOWER(CNM)                  
+------------------------- ------------------------- -------------------------   
+adarsh                    ADARSH                    adarsh                      
+Adarsh S. Patel           ADARSH S. PATEL           adarsh s. patel             
+Tapan                     TAPAN                     tapan                       
+Shivang                   SHIVANG                   shivang                     
+Shivang                   SHIVANG                   shivang                     
+Hemal                     HEMAL                     hemal                       
+Samir                     SAMIR                     samir                       
+Pranav                    PRANAV                    pranav                      
+Parthiv                   PARTHIV                   parthiv                     
+Ashish                    ASHISH                    ashish                      
+
+10 rows selected.
+
+SQL> 
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), lower(cnm) from CLMST
+SQL> /
+
+CNM                       INITCAP(CNM)              LOWER(CNM)                  
+------------------------- ------------------------- -------------------------   
+adarsh                    Adarsh                    adarsh                      
+Adarsh S. Patel           Adarsh S. Patel           adarsh s. patel             
+Tapan                     Tapan                     tapan                       
+Shivang                   Shivang                   shivang                     
+Shivang                   Shivang                   shivang                     
+Hemal                     Hemal                     hemal                       
+Samir                     Samir                     samir                       
+Pranav                    Pranav                    pranav                      
+Parthiv                   Parthiv                   parthiv                     
+Ashish                    Ashish                    ashish                      
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), substr(cnm,1,1) from CLMST
+SQL> /
+
+CNM                       INITCAP(CNM)              S                           
+------------------------- ------------------------- -                           
+adarsh                    Adarsh                    a                           
+Adarsh S. Patel           Adarsh S. Patel           A                           
+Tapan                     Tapan                     T                           
+Shivang                   Shivang                   S                           
+Shivang                   Shivang                   S                           
+Hemal                     Hemal                     H                           
+Samir                     Samir                     S                           
+Pranav                    Pranav                    P                           
+Parthiv                   Parthiv                   P                           
+Ashish                    Ashish                    A                           
+
+10 rows selected.
+
+SQL> 
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), upper(substr(cnm,1,1)) from CLMST
+SQL> /
+
+CNM                       INITCAP(CNM)              U                           
+------------------------- ------------------------- -                           
+adarsh                    Adarsh                    A                           
+Adarsh S. Patel           Adarsh S. Patel           A                           
+Tapan                     Tapan                     T                           
+Shivang                   Shivang                   S                           
+Shivang                   Shivang                   S                           
+Hemal                     Hemal                     H                           
+Samir                     Samir                     S                           
+Pranav                    Pranav                    P                           
+Parthiv                   Parthiv                   P                           
+Ashish                    Ashish                    A                           
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), upper(substr(cnm,1,1)) + "." from CLMST
+SQL> /
+select cnm, initcap(cnm), upper(substr(cnm,1,1)) + "." from CLMST
+                                                   *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), upper(substr(cnm,1,1)) and "." from CLMST
+SQL> /
+select cnm, initcap(cnm), upper(substr(cnm,1,1)) and "." from CLMST
+                                                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), upper(substr(cnm,1,1))  "." from CLMST
+SQL> /
+
+CNM                       INITCAP(CNM)              .                           
+------------------------- ------------------------- -                           
+adarsh                    Adarsh                    A                           
+Adarsh S. Patel           Adarsh S. Patel           A                           
+Tapan                     Tapan                     T                           
+Shivang                   Shivang                   S                           
+Shivang                   Shivang                   S                           
+Hemal                     Hemal                     H                           
+Samir                     Samir                     S                           
+Pranav                    Pranav                    P                           
+Parthiv                   Parthiv                   P                           
+Ashish                    Ashish                    A                           
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm) upper(substr(cnm,1,1)) "A"  from CLMST
+SQL> /
+select cnm, initcap(cnm) upper(substr(cnm,1,1)) "A"  from CLMST
+                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cnm, initcap(cnm), upper(substr(cnm,1,1)) "A"  from CLMST
+SQL> /
+
+CNM                       INITCAP(CNM)              A                           
+------------------------- ------------------------- -                           
+adarsh                    Adarsh                    A                           
+Adarsh S. Patel           Adarsh S. Patel           A                           
+Tapan                     Tapan                     T                           
+Shivang                   Shivang                   S                           
+Shivang                   Shivang                   S                           
+Hemal                     Hemal                     H                           
+Samir                     Samir                     S                           
+Pranav                    Pranav                    P                           
+Parthiv                   Parthiv                   P                           
+Ashish                    Ashish                    A                           
+
+10 rows selected.
+
+SQL> exit

@@ -1,0 +1,516 @@
+SQL> spool
+currently spooling to College_Query.txt
+SQL> arraysize 15
+autocommit OFF
+autoprint OFF
+autorecovery OFF
+autotrace OFF
+closecursor OFF
+colsep " "
+echo OFF
+colsep " "
+flagger OFF
+flush ON
+flagger OFF
+CREATE TABLE emp1
+  2  (
+  3  no VARCHAR2(5),
+  4  name VARCHAR2(10),
+  5  b_date DATE,
+  6  gender CHAR
+  7  );
+
+Table created.
+
+SQL> DESC EMP1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(5)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+
+SQL> INSERT INTO EMP1
+  2  (NO,NAME,B_DATE,GENDER)
+  3  VALUES
+  4  ('A1','ABC','29-DEC-07','M');
+
+1 row created.
+
+SQL> INSERT INTO EMP1
+  2  (NO)
+  3  VALUES
+  4  ('A2');
+
+1 row created.
+
+SQL> DESC EMP1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(5)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+
+SQL> ALTER TABLE EMP1
+  2  MODIFY
+  3  (NO VARCHAR2(10));
+
+Table altered.
+
+SQL> DESC EMP1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+
+SQL> ALTER TABLE EMP1
+  2  ADD
+  3  (ADDRESS VARCHAR2(30));
+
+Table altered.
+
+SQL> DESC EMP1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> RENAME EMP1 TO EMP2;
+
+Table renamed.
+
+SQL> DESC EMP1;
+ERROR:
+ORA-04043: object EMP1 does not exist 
+
+
+SQL> DESC EMP2;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> RENAME EMP2 TO EMPLOYEE;
+
+Table renamed.
+
+SQL> DESC EMPLOYEE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> SELECT * FROM  EMPLOYEE;
+
+NO         NAME       B_DATE    G ADDRESS                                       
+---------- ---------- --------- - ------------------------------                
+A1         ABC        29-DEC-07 M                                               
+A2                                                                              
+
+SQL> SELECT COUNT(*) FROM  EMPLOYEE;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> HELP DROP
+SP2-0172: No HELP available.
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMPLOYEE                       TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+
+7 rows selected.
+
+SQL> SELECT  * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> DESC EMP;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(4)
+ ENAME                                              VARCHAR2(10)
+ JOB                                                VARCHAR2(9)
+ MGR                                                NUMBER(4)
+ HIREDATE                                           DATE
+ SAL                                                NUMBER(7,2)
+ COMM                                               NUMBER(7,2)
+ DEPTNO                                             NUMBER(2)
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+
+SQL> DESC  DEPT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTNO                                    NOT NULL NUMBER(2)
+ DNAME                                              VARCHAR2(14)
+ LOC                                                VARCHAR2(13)
+
+SQL> INSERT INTO DEPT
+  2  ('40','ADARSH','BHAVNAGAR');
+('40','ADARSH','BHAVNAGAR')
+ *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO DEPT VALUES
+  2  ('40','ADARSH','BHAVNAGAR');
+INSERT INTO DEPT VALUES
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.PK_DEPT) violated 
+
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  INSERT INTO DEPT VALUES
+  2* ('50','ADARSH','BHAVNAGAR')
+SQL> /
+
+1 row created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  INSERT INTO DEPT VALUES
+  2* ('60','PATEL','BHAVNAGAR')
+SQL> /
+
+1 row created.
+
+SQL>  SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                   
+---------- -------------- -------------                                         
+        10 ACCOUNTING     NEW YORK                                              
+        20 RESEARCH       DALLAS                                                
+        30 SALES          CHICAGO                                               
+        40 OPERATIONS     BOSTON                                                
+        50 ADARSH         BHAVNAGAR                                             
+        60 PATEL          BHAVNAGAR                                             
+
+6 rows selected.
+
+SQL> CREATE TABLE SEM1
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB5 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2)
+ 10    ,
+ 11    PER NUMBER(5,2),
+ 12  NAME VARCHAR2(10),
+ 13  ROLL VARCHAR2(10)
+ 14  );
+  SUB5 NUMBER(5,2),
+  *
+ERROR at line 8:
+ORA-00957: duplicate column name 
+
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM1
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> /
+
+Table created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM2
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> /
+
+Table created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM3
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> 
+SQL> /
+
+Table created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM4
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> /
+
+Table created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM5
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> /
+
+Table created.
+
+SQL> EDIT
+Wrote file afiedt.buf
+
+  1  CREATE TABLE SEM6
+  2  (
+  3    SUB1 NUMBER(5,2),
+  4    SUB2 NUMBER(5,2),
+  5    SUB3 NUMBER(5,2),
+  6    SUB4 NUMBER(5,2),
+  7    SUB5 NUMBER(5,2),
+  8    SUB6 NUMBER(5,2),
+  9    TOTAL NUMBER(5,2),
+ 10    PER NUMBER(5,2),
+ 11    NAME VARCHAR2(10),
+ 12    ROLL VARCHAR2(10)
+ 13* )
+SQL> /
+
+Table created.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMPLOYEE                       TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+
+13 rows selected.
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMPLOYEE                       TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+
+13 rows selected.
+
+SQL> 
+SQL> clear screen
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMPLOYEE                       TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+
+13 rows selected.
+
+SQL> DESC SEM1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SUB1                                               NUMBER(5,2)
+ SUB2                                               NUMBER(5,2)
+ SUB3                                               NUMBER(5,2)
+ SUB4                                               NUMBER(5,2)
+ SUB5                                               NUMBER(5,2)
+ SUB6                                               NUMBER(5,2)
+ TOTAL                                              NUMBER(5,2)
+ PER                                                NUMBER(5,2)
+ NAME                                               VARCHAR2(10)
+ ROLL                                               VARCHAR2(10)
+
+SQL> QUIT

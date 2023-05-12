@@ -1,0 +1,104 @@
+CREATE TABLE ITEM
+  2  (
+  3    I_NO  NUMBER(3) PRIMARY KEY,
+  4    I_PRICE NUMBER(5,2),
+  5    CHECK (I_NO >0)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO ITEM
+  2  VALUES
+  3  (1,500);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO ITEM
+  2  VALUES
+  3* (-5,500)
+SQL> /
+INSERT INTO ITEM
+*
+ERROR at line 1:
+ORA-02290: check constraint (SCOTT.SYS_C001282) violated 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO ITEM
+  2  VALUES
+  3* (5,500)
+SQL> /
+
+1 row created.
+
+SQL> /
+INSERT INTO ITEM
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C001283) violated 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO ITEM
+  2  VALUES
+  3* (2,500)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM ITEM;
+
+      I_NO    I_PRICE                                                           
+---------- ----------                                                           
+         1        500                                                           
+         5        500                                                           
+         2        500                                                           
+
+SQL> CONNECT ADARSH
+ERROR:
+ORA-01017: invalid username/password; logon denied 
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> CONNECT A
+Connected.
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+T                              TABLE                                            
+
+SQL> DROP T;
+DROP T
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> DROP TABLE T;
+
+Table dropped.
+
+SQL> SELECT * FROM TAB;
+
+no rows selected
+
+SQL> ROLL BACK
+Rollback complete.
+SQL> SELECT * FROM TAB;
+
+no rows selected
+
+SQL> COMMIT
+  2  ;
+
+Commit complete.
+
+SQL> QUIT

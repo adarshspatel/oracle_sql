@@ -1,0 +1,878 @@
+select count(*) from employee;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select count(*) from account
+SQL> /
+
+  COUNT(*)                                                                      
+----------                                                                      
+         5                                                                      
+
+SQL> select * from account;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+      1000          2                                                           
+      1000          3                                                           
+      1000          4                                                           
+      1000          5                                                           
+
+SQL> select avg(balance) from account;
+
+AVG(BALANCE)                                                                    
+------------                                                                    
+        1000                                                                    
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select avg(balance) "Average" from account
+SQL> /
+
+   Average                                                                      
+----------                                                                      
+      1000                                                                      
+
+SQL> delete from account where ACCOUNTNO=4;
+
+1 row deleted.
+
+SQL>  select avg(balance) "Average" from account
+  2  ;
+
+   Average                                                                      
+----------                                                                      
+      1000                                                                      
+
+SQL> select avg(48,56,65,23,56) from dual;
+select avg(48,56,65,23,56) from dual
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> avg(48,56,65,23,56) from dual;
+SP2-0734: unknown command beginning "avg(48,56,..." - rest of line ignored.
+SQL> select avg(48) from dual;
+
+   AVG(48)                                                                      
+----------                                                                      
+        48                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select avg(48,20) from dual
+SQL> /
+select avg(48,20) from dual
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select avg(48,20) from dual
+SQL> select sum(balance) "Average" from account;
+
+   Average                                                                      
+----------                                                                      
+      4000                                                                      
+
+SQL> select * from account;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+      1000          2                                                           
+      1000          3                                                           
+      1000          5                                                           
+
+SQL> select sum(balance) "Average" from account;
+
+   Average                                                                      
+----------                                                                      
+      4000                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select min(balance) "Average" from account
+SQL> /
+
+   Average                                                                      
+----------                                                                      
+      1000                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select min(distinct balance) "Average" from account
+SQL> /
+
+   Average                                                                      
+----------                                                                      
+      1000                                                                      
+
+SQL> update employee
+  2  set BALANCE=2000
+  3  where ACCOUNTNO=2;
+where ACCOUNTNO=2
+      *
+ERROR at line 3:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update employee
+  2  set BALANCE=2000
+  3* where ACCOUNTNO='2'
+SQL> /
+where ACCOUNTNO='2'
+      *
+ERROR at line 3:
+ORA-00904: invalid column name 
+
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ B_DATE                                             DATE
+ GENDER                                             CHAR(1)
+ ADDRESS                                            VARCHAR2(30)
+
+SQL> update account
+  2  set BALANCE=2000
+  3  where ACCOUNTNO=2
+  4  ;
+
+1 row updated.
+
+SQL> select * from account;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+      2000          2                                                           
+      1000          3                                                           
+      1000          5                                                           
+
+SQL> update account
+  2  set BALANCE=3000
+  3   where ACCOUNTNO=3;
+
+1 row updated.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update account
+  2  set BALANCE=4000
+  3*  where ACCOUNTNO=4
+SQL> /
+
+0 rows updated.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update account
+  2  set BALANCE=5000
+  3*  where ACCOUNTNO=5
+SQL> /
+
+1 row updated.
+
+SQL> select * from account;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+      2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL> select avg(BALANCE) FROM account;
+
+AVG(BALANCE)                                                                    
+------------                                                                    
+        2750                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select avg(BALANCE) FROM account
+  2* WHERE ACCOUNTNO LIKE(1,2)
+SQL> /
+WHERE ACCOUNTNO LIKE(1,2)
+                      *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select avg(BALANCE) FROM account
+  2* WHERE ACCOUNTNO IN(1,2)
+SQL> /
+
+AVG(BALANCE)                                                                    
+------------                                                                    
+        1500                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select avg(BALANCE) FROM account
+  2* WHERE ACCOUNTNO IN(1,3)
+SQL> /
+
+AVG(BALANCE)                                                                    
+------------                                                                    
+        2000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select SUM(BALANCE) FROM account
+  2  
+SQL> /
+
+SUM(BALANCE)                                                                    
+------------                                                                    
+       11000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  select SUM(BALANCE) FROM account
+  2* WHERE ACCOUNTNO IN(1,2)
+SQL> /
+
+SUM(BALANCE)                                                                    
+------------                                                                    
+        3000                                                                    
+
+SQL> SELECT 5*5 FROM DUAL;
+
+       5*5                                                                      
+----------                                                                      
+        25                                                                      
+
+SQL> DESC DUAL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DUMMY                                              VARCHAR2(1)
+
+SQL> SELECT * FROM DUAL;
+
+D                                                                               
+-                                                                               
+X                                                                               
+
+SQL> SELECT 5*5/2  FROM DUAL;
+
+     5*5/2                                                                      
+----------                                                                      
+      12.5                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT 5*5/2  FROM ACCOUNT
+SQL> /
+
+     5*5/2                                                                      
+----------                                                                      
+      12.5                                                                      
+      12.5                                                                      
+      12.5                                                                      
+      12.5                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT 5*5/2  FROM ACCOUNT
+  2* WHERE ACCOUNTNO=1
+SQL> /
+
+     5*5/2                                                                      
+----------                                                                      
+      12.5                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MIN(BALANCE)  FROM ACCOUNT
+  2  /
+
+MIN(BALANCE)                                                                    
+------------                                                                    
+        1000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT MIN(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO >2
+SQL> /
+
+MIN(BALANCE)                                                                    
+------------                                                                    
+        3000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO >2 
+SQL> /
+
+SUM(BALANCE)                                                                    
+------------                                                                    
+        8000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT SUM(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO <2 
+SQL> /
+
+SUM(BALANCE)                                                                    
+------------                                                                    
+        1000                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO <2 
+SQL> /
+
+COUNT(BALANCE)                                                                  
+--------------                                                                  
+             1                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO >2 
+SQL> /
+
+COUNT(BALANCE)                                                                  
+--------------                                                                  
+             2                                                                  
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT COUNT(BALANCE)  FROM ACCOUNT
+  2* WHERE ACCOUNTNO >1 
+SQL> /
+
+COUNT(BALANCE)                                                                  
+--------------                                                                  
+             3                                                                  
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                         
+---------                                                                       
+17-JAN-08                                                                       
+
+SQL> update account
+  2  set BALANCE=2000
+  3  where ACCOUNTNO=2
+  4  ;KJ
+  5  /
+;KJ
+*
+ERROR at line 4:
+ORA-00911: invalid character 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  update account
+  2  set BALANCE=-2000
+  3* where ACCOUNTNO=2
+  4  /
+
+1 row updated.
+
+SQL> SELECT * FROM ACCOUNT;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+     -2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL> SELECT BALANCE, ACCOUNTNO FROM ACCOUNT;
+
+   BALANCE  ACCOUNTNO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+     -2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT BALANCE "BAL", ACCOUNTNO "ANO" FROM ACCOUNT
+SQL> /
+
+       BAL        ANO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+     -2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ABS(BALANCE) "BAL", ACCOUNTNO "ANO" FROM ACCOUNT
+SQL> /
+
+       BAL        ANO                                                           
+---------- ----------                                                           
+      1000          1                                                           
+      2000          2                                                           
+      3000          3                                                           
+      5000          5                                                           
+
+SQL> CREATE TABLE STD_FEE
+  2  (
+  3    S_NAME VARCHAR2(10),
+  4    S_FEES NUMBER(10,5)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO STD_FEE
+  2  VALUES
+  3  ( 'A',523.35154);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_FEE
+  2  VALUES
+  3* ( 'B',5235.554)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_FEE
+  2  VALUES
+  3* ( 'B',5200.154)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM STD_FEE;
+
+S_NAME         S_FEES                                                           
+---------- ----------                                                           
+A           523.35154                                                           
+B            5235.554                                                           
+B            5200.154                                                           
+
+SQL> SELECT S_NAME "STD NAME", TRUNCATE(S_FEES,1) FROM STD_FEE;
+SELECT S_NAME "STD NAME", TRUNCATE(S_FEES,1) FROM STD_FEE
+                          *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "STD NAME", TRUNC(S_FEES,1) FROM STD_FEE
+SQL> /
+
+STD NAME   TRUNC(S_FEES,1)                                                      
+---------- ---------------                                                      
+A                    523.3                                                      
+B                   5235.5                                                      
+B                   5200.1                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "STD NAME", TRUNC(S_FEES,2) FROM STD_FEE
+SQL> /
+
+STD NAME   TRUNC(S_FEES,2)                                                      
+---------- ---------------                                                      
+A                   523.35                                                      
+B                  5235.55                                                      
+B                  5200.15                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", TRUNC(S_FEES,2) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A              523.35                                                           
+B             5235.55                                                           
+B             5200.15                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,2) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A              523.35                                                           
+B             5235.55                                                           
+B             5200.15                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,1) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A               523.4                                                           
+B              5235.6                                                           
+B              5200.2                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,5) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A           523.35154                                                           
+B            5235.554                                                           
+B            5200.154                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,-2) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 500                                                           
+B                5200                                                           
+B                5200                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,-3) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                1000                                                           
+B                5000                                                           
+B                5000                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,-4) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                   0                                                           
+B               10000                                                           
+B               10000                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", ROUND(S_FEES,-5) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                   0                                                           
+B                   0                                                           
+B                   0                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", TRUNC(S_FEES,-2) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 500                                                           
+B                5200                                                           
+B                5200                                                           
+
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", TRUNC(S_FEES,-1) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 520                                                           
+B                5230                                                           
+B                5200                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", TRUNC(S_FEES,0) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 523                                                           
+B                5235                                                           
+B                5200                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", TRUNC(S_FEES,2) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A              523.35                                                           
+B             5235.55                                                           
+B             5200.15                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", CEIL(S_FEES,2) "FEE" FROM STD_FEE
+SQL> /
+SELECT S_NAME "NAME", CEIL(S_FEES,2) "FEE" FROM STD_FEE
+                      *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", CEIL(S_FEES) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 524                                                           
+B                5236                                                           
+B                5201                                                           
+
+SQL>  INSERT INTO STD_FEE
+  2   VALUES
+  3   ( 'B',5200.154)
+  4   /
+  5  
+SQL> w created.
+SP2-0042: unknown command "w created." - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1   INSERT INTO STD_FEE
+  2   VALUES
+  3*  ( 'E',5200.0001)
+  4  /
+
+1 row created.
+
+SQL> SELECT * FROM STD_FEE;
+
+S_NAME         S_FEES                                                           
+---------- ----------                                                           
+A           523.35154                                                           
+B            5235.554                                                           
+B            5200.154                                                           
+E           5200.0001                                                           
+
+SQL> SELECT S_NAME "NAME", CEIL(S_FEES) "FEE" FROM STD_FEE
+  2  /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 524                                                           
+B                5236                                                           
+B                5201                                                           
+E                5201                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NAME "NAME", FLOOR(S_FEES) "FEE" FROM STD_FEE
+SQL> /
+
+NAME              FEE                                                           
+---------- ----------                                                           
+A                 523                                                           
+B                5235                                                           
+B                5200                                                           
+E                5200                                                           
+
+SQL> SELECT MOD(2,3) FROM DUAL;
+
+  MOD(2,3)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MOD(5,3) FROM DUAL
+SQL> /
+
+  MOD(5,3)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT POWER(2,3) FROM DUAL
+SQL> /
+
+POWER(2,3)                                                                      
+----------                                                                      
+         8                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SQRT(25) FROM DUAL
+SQL> /
+
+  SQRT(25)                                                                      
+----------                                                                      
+         5                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SQRT(20) FROM DUAL
+SQL> /
+
+  SQRT(20)                                                                      
+----------                                                                      
+4.47213595                                                                      
+
+SQL> SELECT NAME, MIN(S_FEES) FROM STD_FEE;
+SELECT NAME, MIN(S_FEES) FROM STD_FEE
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT  MIN(S_FEES) FROM STD_FEE
+SQL> /
+
+MIN(S_FEES)                                                                     
+-----------                                                                     
+  523.35154                                                                     
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT  MIN(S_FEES) FROM STD_FEE
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD_FEE WHERE S_FEES=MIN(S_FEES)
+SQL> /
+SELECT * FROM STD_FEE WHERE S_FEES=MIN(S_FEES)
+                                   *
+ERROR at line 1:
+ORA-00934: group function is not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD_FEE WHERE S_FEES =( SELECT MIN(S_FEES) FROM STD_FEE)
+SQL> /
+
+S_NAME         S_FEES                                                           
+---------- ----------                                                           
+A           523.35154                                                           
+
+SQL> arraysize 15
+autocommit OFF
+autoprint OFF
+autorecovery OFF
+autotrace OFF
+blockterminator "." (hex 2e)
+closecursor OFF
+cmdsep OFF
+flush ON
+heading ON
+headsep "|" (hex 7c)
+instance "local"
+headsep "|" (hex 7c)
+instance "local"
+linesize 80
+logsource ""
+long 80
+longchunksize 80
+pno 1
+numformat ""
+newpage 1
+null ""
+maxdata 0
+longchunksize 80
+long 80
+null ""
+null ""
+autocommit OFF
+autoprint OFF
+autotrace OFF
+blockterminator "." (hex 2e)
+autocommit OFF
+autocommit OFF
+COMMIT;
+
+Commit complete.
+
+SQL> QUIT

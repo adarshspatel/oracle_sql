@@ -1,0 +1,1160 @@
+ADD CONSTRAINT C_NO (NO);
+ADD CONSTRAINT C_NO (NO)
+                    *
+ERROR at line 2:
+ORA-00904: invalid column name 
+
+
+SQL> ALTER TABLE EMP3
+  2  ADD CONSTRAINT NOT NULL (NO);
+ADD CONSTRAINT NOT NULL (NO)
+                         *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO CHAR(3) CONSTRAINT C_NO NOT NULL);
+
+Table altered.
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO CHAR(3) CONSTRAINT C_NO UNIQUE);
+MODIFY (NO CHAR(3) CONSTRAINT C_NO UNIQUE)
+                                   *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NO CHAR(3) CONSTRAINT C_U_NO UNIQUE)
+SQL> /
+MODIFY (NO CHAR(3) CONSTRAINT C_U_NO UNIQUE)
+                                     *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO CHAR(3) CONSTRAINT UNIQUE);
+MODIFY (NO CHAR(3) CONSTRAINT UNIQUE)
+                              *
+ERROR at line 2:
+ORA-02250: missing or invalid constraint name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NO CHAR(3) UNIQUE)
+SQL> /
+MODIFY (NO CHAR(3) UNIQUE)
+                   *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+
+SQL> ALTER TABLE EMP3
+  2  ADD (PHONE VARCHAR2(8) UNIQUE);
+
+Table altered.
+
+SQL>  DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (PHONE VARCHAR2(8) NOT NULL);
+ALTER TABLE EMP3
+*
+ERROR at line 1:
+ORA-02296: cannot enable (SCOTT.) - null values found 
+
+
+SQL> INSERT INTO EMP3
+  2  VALUES
+  3  ('009','XYZ','56565');
+
+1 row created.
+
+SQL> UPDATE EMP3
+  2  SET PHONE  = '34343'
+  3  ;
+UPDATE EMP3
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C001266) violated 
+
+
+SQL> SELECT * FROM EMP3;
+
+NO  NAME       PHONE                                                            
+--- ---------- --------                                                         
+001 adarsh                                                                      
+001 patel                                                                       
+009 XYZ        56565                                                            
+
+SQL> DELETE EMP3
+  2  WHERE NAME = 'PATEL';
+
+0 rows deleted.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  DELETE EMP3
+  2* WHERE NAME = 'patel'
+SQL> /
+
+1 row deleted.
+
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> alter table emp3
+  2  modify ( no char(3) unique);
+modify ( no char(3) unique)
+                    *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> alter table emp3
+  2  add constraint (no unique);
+add constraint (no unique)
+               *
+ERROR at line 2:
+ORA-00902: invalid datatype 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  alter table emp3
+  2* add constraint (no char(3) unique)
+SQL> /
+add constraint (no char(3) unique)
+               *
+ERROR at line 2:
+ORA-00902: invalid datatype 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  alter table emp3
+  2* add constraint no char(3) unique
+SQL> /
+add constraint no char(3) unique
+                  *
+ERROR at line 2:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  alter table emp3
+  2* add constraint unique no char(3)
+SQL> /
+add constraint unique no char(3)
+                      *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> select * from emp3;
+
+NO  NAME       PHONE                                                            
+--- ---------- --------                                                         
+001 adarsh                                                                      
+009 XYZ        56565                                                            
+
+SQL> delete emp3;
+
+2 rows deleted.
+
+SQL> select * from emp3;
+
+no rows selected
+
+SQL> desc emp;3
+SP2-0565: Illegal identifier.
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> alter table emp3
+  2  add (phone_2 varchar2(5) unique not null);
+
+Table altered.
+
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+ PHONE_2                                   NOT NULL VARCHAR2(5)
+
+SQL> alter table emp3
+  2  drop column phone_2;
+
+Table altered.
+
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> alter table emp3
+  2  drop constraint c_no;
+
+Table altered.
+
+SQL> desc emp3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> select * from user_cons_columns where table_name = 'EMP3';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001266                                      
+EMP3                                                                            
+PHONE                                                                           
+         1                                                                      
+                                                                                
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (PHONE VARCHAR2(8) NOT NULL);
+
+Table altered.
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                     NOT NULL VARCHAR2(8)
+
+SQL> select * from user_cons_columns where table_name = 'EMP3';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001266                                      
+EMP3                                                                            
+PHONE                                                                           
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001269                                      
+EMP3                                                                            
+PHONE                                                                           
+                                                                                
+                                                                                
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                     NOT NULL VARCHAR2(8)
+
+SQL> ALTER TABLE EMP3
+  2  DROP CONSTRAINT  SYS_C001266;
+
+Table altered.
+
+SQL> ALTER TABLE EMP3
+  2   DROP CONSTRAINT SYS_C001269
+  3  
+SQL> /
+
+Table altered.
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 CHAR(3)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> select * from user_cons_columns where table_name = 'EMP3';
+
+no rows selected
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO VARCHAR2(5) CONSTRAINT NOT NULL NO_NN);
+MODIFY (NO VARCHAR2(5) CONSTRAINT NOT NULL NO_NN)
+                                  *
+ERROR at line 2:
+ORA-02250: missing or invalid constraint name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NO VARCHAR2(5) CONSTRAINT NO_NN NOT NULL)
+SQL> /
+
+Table altered.
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL VARCHAR2(5)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO VARCHAR2(5) CONSTRAINT NO_UNIQUE UNIQUE);
+MODIFY (NO VARCHAR2(5) CONSTRAINT NO_UNIQUE UNIQUE)
+                                            *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ALTER TABLE EMP3
+  2  DROP CONSTRAING NO_NN
+  3  ;
+DROP CONSTRAING NO_NN
+     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ALTER TABLE EMP3
+  2  DROP CONSTRAINT NO_NN
+  3  ;
+
+Table altered.
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(5)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NO VARCHAR2(5) CONSTRAINT NO_UNIQUE UNIQUE);
+MODIFY (NO VARCHAR2(5) CONSTRAINT NO_UNIQUE UNIQUE)
+                                            *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NO VARCHAR2(5) UNIQUE)
+SQL> /
+MODIFY (NO VARCHAR2(5) UNIQUE)
+                       *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* ADD (NO1 VARCHAR2(5) UNIQUE)
+SQL> /
+
+Table altered.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* ADD (NO2 VARCHAR2(5) CONSTRAINT C_NO_U UNIQUE)
+SQL> /
+
+Table altered.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NO2 VARCHAR2(5) CONSTRAINT C_NO_NN NOT NULL)
+SQL> /
+
+Table altered.
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE
+  2  TABLE_NAME = 'EMP3';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_NO_NN                                          
+EMP3                                                                            
+NO2                                                                             
+                                                                                
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_NO_U                                           
+EMP3                                                                            
+NO2                                                                             
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001271                                      
+EMP3                                                                            
+NO1                                                                             
+         1                                                                      
+                                                                                
+
+SQL> SELECT * FROM EMP3;
+
+no rows selected
+
+SQL> DESC EMP3;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 VARCHAR2(5)
+ NAME                                               VARCHAR2(10)
+ PHONE                                              VARCHAR2(8)
+ NO1                                                VARCHAR2(5)
+ NO2                                       NOT NULL VARCHAR2(5)
+
+SQL> ALTER TABLE EMP3
+  2  MODIFY (NAME VARCHARW(5) CONSTRAINT C_U_NAME UNIQUE);
+MODIFY (NAME VARCHARW(5) CONSTRAINT C_U_NAME UNIQUE)
+                     *
+ERROR at line 2:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NAME VARCHAR2(5) CONSTRAINT C_U_NAME UNIQUE)
+SQL> /
+MODIFY (NAME VARCHAR2(5) CONSTRAINT C_U_NAME UNIQUE)
+                                             *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+SQL> /
+MODIFY (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+                                              *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NAME VARCHAR2(10) UNIQUE)
+SQL> /
+MODIFY (NAME VARCHAR2(10) UNIQUE)
+                          *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* ADD (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+SQL> /
+ADD (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+     *
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* MODIFY (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+SQL> /
+MODIFY (NAME VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+                                              *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP3
+  2* ADD (NAME1 VARCHAR2(10) CONSTRAINT C_U_NAME UNIQUE)
+SQL> /
+
+Table altered.
+
+SQL> CREATE TABLE EMP_PK
+  2  (
+  3  NO NUMBER(3) CONSTRAINT PK_NO PRIMARY KEY
+  4  );
+
+Table created.
+
+SQL> DESC EMP_PK
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                        NOT NULL NUMBER(3)
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'EMP_PK';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          PK_NO                                            
+EMP_PK                                                                          
+NO                                                                              
+         1                                                                      
+                                                                                
+
+SQL> CREATE TABLE EMP_PK1
+  2  (
+  3  NO NUMBER(3) PRIMARY KEY
+  4  );
+
+Table created.
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'EMP_PK1'
+  2  ;
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001276                                      
+EMP_PK1                                                                         
+NO                                                                              
+         1                                                                      
+                                                                                
+
+SQL> ALTER TABLE EMP_PK1
+  2  DROP CONSTRAINT PRIMARY KEY;
+DROP CONSTRAINT PRIMARY KEY
+                        *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP_PK1
+  2* DROP PRIMARY KEY
+SQL> /
+
+Table altered.
+
+SQL> ALTER TABLE EMP_PK
+  2  DROP PRIMARY KEY
+  3  
+SQL> /
+
+Table altered.
+
+SQL> DESC EMP_PK
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(3)
+
+SQL> ALTER TABLE EMP_PK
+  2  MODIFY (NO NUMBER(3) PRIMARY KEY);
+MODIFY (NO NUMBER(3) PRIMARY KEY)
+                     *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP_PK
+  2* MODIFY (NO NUMBER(3) CONSTRAINT C_PK_NO PRIMARY KEY)
+SQL> /
+MODIFY (NO NUMBER(3) CONSTRAINT C_PK_NO PRIMARY KEY)
+                     *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP_PK
+  2* ADD  (NO NUMBER(3) CONSTRAINT C_PK_NO PRIMARY KEY)
+SQL> /
+ADD  (NO NUMBER(3) CONSTRAINT C_PK_NO PRIMARY KEY)
+      *
+ERROR at line 2:
+ORA-01430: column being added already exists in table 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE EMP_PK
+  2* ADD  (NO1 NUMBER(3) CONSTRAINT C_PK_NO PRIMARY KEY)
+SQL> /
+
+Table altered.
+
+SQL> DESC EMP_PK;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO                                                 NUMBER(3)
+ NO1                                       NOT NULL NUMBER(3)
+
+SQL> ALTER TABLE EMP_PK
+  2  DROP COLUMN NO;
+
+Table altered.
+
+SQL> DESC EMP_PK;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NO1                                       NOT NULL NUMBER(3)
+
+SQL> ALTER TABLE
+  2  RENAME NO1 TO NO;
+RENAME NO1 TO NO
+*
+ERROR at line 2:
+ORA-00903: invalid table name 
+
+
+SQL> ALTER TABLE EMP_PK
+  2  RENAME NO1 TO NO;
+RENAME NO1 TO NO
+       *
+ERROR at line 2:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
+SQL> CREATE TABLE PRODUCT
+  2  (
+  3    P_NO NUMBER(3),
+  4    P_NAME VARCHAR2(10),
+  5    P_VALUE NUMBER(12),
+  6  PRIMARY KEY (P_NO,P_NAME)
+  7  );
+
+Table created.
+
+SQL> DESC PRODUCT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_NO                                      NOT NULL NUMBER(3)
+ P_NAME                                    NOT NULL VARCHAR2(10)
+ P_VALUE                                            NUMBER(12)
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'PRODUCT';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001278                                      
+PRODUCT                                                                         
+P_NO                                                                            
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001278                                      
+PRODUCT                                                                         
+P_NAME                                                                          
+         2                                                                      
+                                                                                
+
+SQL> ALTER TABLE PRODUCT
+  2  DROP PRIMARY KEY;
+
+Table altered.
+
+SQL> DESC PRODUCT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_NO                                               NUMBER(3)
+ P_NAME                                             VARCHAR2(10)
+ P_VALUE                                            NUMBER(12)
+
+SQL> ALTER TABLE PRODUCT
+  2  MODIFY ( PRIMARY KEY (P_NO,P_NAME) );
+MODIFY ( PRIMARY KEY (P_NO,P_NAME) )
+         *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE PRODUCT
+  2* MODIFY PRIMARY KEY (P_NO,P_NAME) 
+SQL> /
+MODIFY PRIMARY KEY (P_NO,P_NAME) 
+                   *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE PRODUCT
+  2* MODIFY P_NO PRIMARY KEY
+SQL> /
+MODIFY P_NO PRIMARY KEY
+            *
+ERROR at line 2:
+ORA-02253: constraint specification not allowed here 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE PRODUCT
+  2* MODIFY PRIMARY KEY (P_NO)
+SQL> 
+SQL> /
+MODIFY PRIMARY KEY (P_NO)
+                   *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> CREATE TABLE STD_MASTER
+  2  (
+  3    S_NO NUMBER(3) PRIMARY KEY,
+  4    S_NAME VARCHAR2(10)
+  5  );
+
+Table created.
+
+SQL> CREATE TABLE STD_DETAIL
+  2  (
+  3    S_NO NUMBER(3) REFERENCES STD_MASTER(S_NO),
+  4    FEES NUMBER(5),
+  5    SEM  NUMBER(1)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (100,200,300);
+(100,200,300)
+         *
+ERROR at line 3:
+ORA-01438: value larger than specified precision allows for this column 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (100,200,3)
+SQL> /
+INSERT INTO STD_DETAIL
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C001280) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO STD_MASTER
+  2  VALUES
+  3  (100,'ADARSH');
+
+1 row created.
+
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (100,200,3);
+
+1 row created.
+
+SQL> SELECT * FROM STD_DETAIL;
+
+      S_NO       FEES        SEM                                                
+---------- ---------- ----------                                                
+       100        200          3                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM STD_MASTER
+SQL> 
+SQL> /
+
+      S_NO S_NAME                                                               
+---------- ----------                                                           
+       100 ADARSH                                                               
+
+SQL> DELETE STD_MASTER;
+DELETE STD_MASTER
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SCOTT.SYS_C001280) violated - child record 
+found 
+
+
+SQL> DELETE STD_DETAIL;
+
+1 row deleted.
+
+SQL> DELETE STD_MASTER;
+
+1 row deleted.
+
+SQL> INSERT INTO STD_MASTER
+  2  VALUES
+  3  (100,'ADARSH');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (100,200,3);
+
+1 row created.
+
+SQL> CREATE TABLE STD_DETAIL1
+  2  (
+  3    S_NO NUMBER(3),
+  4    FEES NUMBER(5),
+  5    SEM  NUMBER(1)
+  6  );
+
+Table created.
+
+SQL> ALTER TABLE STD_DETAIL1
+  2  ADD FOREIGN KEY (S_NO) REFERENCES STD_MASTER(S_NO);
+
+Table altered.
+
+SQL> DESC STD_DETAIL1;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_NO                                               NUMBER(3)
+ FEES                                               NUMBER(5)
+ SEM                                                NUMBER(1)
+
+SQL> ALTER TABLE STD_DETAIL1
+  2  DROP FOREIGN KEY;
+DROP FOREIGN KEY
+     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE STD_DETAIL1
+  2* DROP CONSTRAINT FOREIGN KEY
+SQL> /
+DROP CONSTRAINT FOREIGN KEY
+                        *
+ERROR at line 2:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  ALTER TABLE STD_DETAIL1
+  2* DROP REFERENCES
+SQL> /
+DROP REFERENCES
+     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'STD_DETAIL1';
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001281                                      
+STD_DETAIL1                                                                     
+S_NO                                                                            
+         1                                                                      
+                                                                                
+
+SQL> ALTER TABLE STD_DETAIL1
+  2  DROP CONSTRAINT SYS_C001281;
+
+Table altered.
+
+SQL> SELECT * FROM USER_CONS_COLUMNS WHERE TABLE_NAME = 'STD_DETAIL1';
+
+no rows selected
+
+SQL> select * from product;
+
+no rows selected
+
+SQL> /
+
+no rows selected
+
+SQL> select * from user_cons_columns;
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_NO_NN                                          
+EMP3                                                                            
+NO2                                                                             
+                                                                                
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_NO_U                                           
+EMP3                                                                            
+NO2                                                                             
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_PK_NO                                          
+EMP_PK                                                                          
+NO1                                                                             
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          C_U_NAME                                         
+EMP3                                                                            
+NAME1                                                                           
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          FK_DEPTNO                                        
+EMP                                                                             
+DEPTNO                                                                          
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          PK_DEPT                                          
+DEPT                                                                            
+DEPTNO                                                                          
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          PK_EMP                                           
+EMP                                                                             
+EMPNO                                                                           
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001271                                      
+EMP3                                                                            
+NO1                                                                             
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001279                                      
+STD_MASTER                                                                      
+S_NO                                                                            
+         1                                                                      
+                                                                                
+
+OWNER                          CONSTRAINT_NAME                                  
+------------------------------ ------------------------------                   
+TABLE_NAME                                                                      
+------------------------------                                                  
+COLUMN_NAME                                                                     
+--------------------------------------------------------------------------------
+  POSITION                                                                      
+----------                                                                      
+SCOTT                          SYS_C001280                                      
+STD_DETAIL                                                                      
+S_NO                                                                            
+         1                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> 

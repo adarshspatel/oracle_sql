@@ -1,0 +1,1046 @@
+SQL> spool
+currently spooling to college_query1.txt
+SQL> clear screen
+SQL> select name from emp2;
+
+NAME                                                                            
+--------------------                                                            
+RAM                                                                             
+sita                                                                            
+laxman                                                                          
+chetan                                                                          
+rahul                                                                           
+rahul                                                                           
+
+6 rows selected.
+
+SQL> select distinct(no) from emp2;
+
+        NO                                                                      
+----------                                                                      
+       100                                                                      
+       200                                                                      
+       300                                                                      
+
+SQL> select distinct(no,name) from emp2;
+select distinct(no,name) from emp2
+                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> select distinct no, name from emp2;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       100 RAM                                                                  
+       100 sita                                                                 
+       200 laxman                                                               
+       300 chetan                                                               
+       300 rahul                                                                
+
+SQL> select distinct name from emp2;
+
+NAME                                                                            
+--------------------                                                            
+RAM                                                                             
+chetan                                                                          
+laxman                                                                          
+rahul                                                                           
+sita                                                                            
+
+SQL> select * from emp2 where no > 300;
+
+no rows selected
+
+SQL> select * from emp2 where no > 200;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       300 chetan                                                               
+       300 rahul                                                                
+       300 rahul                                                                
+
+SQL> select * from emp2 where no =100;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       100 RAM                                                                  
+       100 sita                                                                 
+
+SQL> select * from emp2 where no>100 and no<300;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       200 laxman                                                               
+
+SQL> select * from emp2 where no <> 300;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       100 RAM                                                                  
+       100 sita                                                                 
+       200 laxman                                                               
+
+SQL> select * from emp2 order by name;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       100 RAM                                                                  
+       300 chetan                                                               
+       200 laxman                                                               
+       300 rahul                                                                
+       300 rahul                                                                
+       100 sita                                                                 
+
+6 rows selected.
+
+SQL> select * from emp2 where no>100 order by name;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       300 chetan                                                               
+       200 laxman                                                               
+       300 rahul                                                                
+       300 rahul                                                                
+
+SQL> select * from emp2 order by name desc;
+
+        NO NAME                                                                 
+---------- --------------------                                                 
+       100 sita                                                                 
+       300 rahul                                                                
+       300 rahul                                                                
+       200 laxman                                                               
+       300 chetan                                                               
+       100 RAM                                                                  
+
+6 rows selected.
+
+SQL> select * from emp2 order by name descending;
+select * from emp2 order by name descending
+                                 *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> create table clmst
+  2  (
+  3  cno number(4),
+  4  cnm varchar2(25),
+  5  cadd varchar2(25),
+  6  ccity varchar2(15),
+  7  cregion char(1),
+  8  cpin number(6)
+  9  );
+
+Table created.
+
+SQL> insert into clmst values
+  2  (1001,'adarsh','kanbiwad','bhavnagar','N','364001');
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1002,'rajiv','ghogha road','bhavnagar','W','364003')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1003,'Tapan','Waghawadi road','bhavnagar','E','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1004,'Shivang','Anannagar','bhavnagar','E','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1004,'Hemal','Anannagar','bhavnagar','E','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1006,'Samir','Anannagar','Gadhada','W','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1007,'Pranav','Anannagar','Gadhada','W','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1007,'Parthiv','Anannagar','Gadhada','W','364002')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into clmst values
+  2* (1009,'Ashish','Anannagar','Gadhada','W','364002')
+SQL> /
+
+1 row created.
+
+SQL> update clmst set
+  2  cno = 1005
+  3  where cnm='Hemal';
+
+1 row updated.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update clmst set
+  2  cno = 1008
+  3* where cnm='Parthiv'
+SQL> /
+
+1 row updated.
+
+SQL> select * from clmst;
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1001 adarsh                    kanbiwad                  bhavnagar       N
+    364001                                                                      
+                                                                                
+      1002 rajiv                     ghogha road               bhavnagar       W
+    364003                                                                      
+                                                                                
+      1003 Tapan                     Waghawadi road            bhavnagar       E
+    364002                                                                      
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1004 Shivang                   Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+      1005 Hemal                     Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+      1006 Samir                     Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1007 Pranav                    Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+      1008 Parthiv                   Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+      1009 Ashish                    Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+
+9 rows selected.
+
+SQL> select * from clmst
+  2  where ccity='b%' or ccity='B%';
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from clmst
+  2* where ccity='G%' or ccity='g%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from clmst
+  2* where ccity='bhavnagar'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1001 adarsh                    kanbiwad                  bhavnagar       N
+    364001                                                                      
+                                                                                
+      1002 rajiv                     ghogha road               bhavnagar       W
+    364003                                                                      
+                                                                                
+      1003 Tapan                     Waghawadi road            bhavnagar       E
+    364002                                                                      
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1004 Shivang                   Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+      1005 Hemal                     Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from clmst
+  2* where ccity Like 'b%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1001 adarsh                    kanbiwad                  bhavnagar       N
+    364001                                                                      
+                                                                                
+      1002 rajiv                     ghogha road               bhavnagar       W
+    364003                                                                      
+                                                                                
+      1003 Tapan                     Waghawadi road            bhavnagar       E
+    364002                                                                      
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1004 Shivang                   Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+      1005 Hemal                     Anannagar                 bhavnagar       E
+    364002                                                                      
+                                                                                
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from clmst
+  2* where ccity Like 'g%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select * from clmst
+  2* where ccity Like 'G%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1006 Samir                     Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+      1007 Pranav                    Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+      1008 Parthiv                   Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+
+       CNO CNM                       CADD                      CCITY           C
+---------- ------------------------- ------------------------- --------------- -
+      CPIN                                                                      
+----------                                                                      
+      1009 Ashish                    Anannagar                 Gadhada         W
+    364002                                                                      
+                                                                                
+
+SQL> select count(*) from clmst;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         9                                                                      
+
+SQL> select count(*) from clmst group by cregion;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         3                                                                      
+         1                                                                      
+         5                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cregion,count(*) as sum from clmst group by cregion
+SQL> /
+
+C        SUM                                                                    
+- ----------                                                                    
+E          3                                                                    
+N          1                                                                    
+W          5                                                                    
+
+SQL> select count(*) from clmst
+  2  where ccity='bhavnagar';
+
+  COUNT(*)                                                                      
+----------                                                                      
+         5                                                                      
+
+SQL> delete clmst
+  2  where cno = 100;
+
+0 rows deleted.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  delete clmst
+  2* where cno = 1001
+SQL> /
+
+1 row deleted.
+
+SQL> select count(*) from clmst;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         8                                                                      
+
+SQL> rollback
+  2  ;
+
+Rollback complete.
+
+SQL> select count(*) from clmst;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         0                                                                      
+
+SQL> insert into clmst values
+  2  (1001,'adarsh','kanbiwad','bhavnagar','N','364001');
+
+1 row created.
+
+SQL> insert into clmst values
+  2  (1002,'rajiv','ghogha road','bhavnagar','W','364003')
+  3  ;
+
+1 row created.
+
+SQL> insert into clmst values
+  2  (1003,'Tapan','Waghawadi road','bhavnagar','E','364002');
+
+1 row created.
+
+SQL> 
+SQL> insert into clmst values
+  2  (1004,'Shivang','Anannagar','bhavnagar','E','364002');
+
+1 row created.
+
+SQL> 
+SQL> insert into clmst values
+  2  (1004,'Shivang','Anannagar','bhavnagar','E','364002');
+
+1 row created.
+
+SQL> 
+SQL>  insert into clmst values
+  2   (1004,'Hemal','Anannagar','bhavnagar','E','364002');
+
+1 row created.
+
+SQL> 
+SQL> insert into clmst values
+  2  (1006,'Samir','Anannagar','Gadhada','W','364002');
+
+1 row created.
+
+SQL>  insert into clmst values
+  2   (1007,'Pranav','Anannagar','Gadhada','W','364002');
+
+1 row created.
+
+SQL> 
+SQL>  insert into clmst values
+  2   (1007,'Parthiv','Anannagar','Gadhada','W','364002');
+
+1 row created.
+
+SQL> 
+SQL>  insert into clmst values
+  2   (1009,'Ashish','Anannagar','Gadhada','W','364002');
+
+1 row created.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> select count(*) from clmst;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        10                                                                      
+
+SQL> update clmst set
+  2  cname = 'Adarsh S. Patel'
+  3  where cno = 1002;
+cname = 'Adarsh S. Patel'
+*
+ERROR at line 2:
+ORA-00904: invalid column name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update clmst set
+  2  cnm = 'Adarsh S. Patel'
+  3* where cno = 1002
+SQL> /
+
+1 row updated.
+
+SQL> select cnm from clmst;
+
+CNM                                                                             
+-------------------------                                                       
+adarsh                                                                          
+Adarsh S. Patel                                                                 
+Tapan                                                                           
+Shivang                                                                         
+Shivang                                                                         
+Hemal                                                                           
+Samir                                                                           
+Pranav                                                                          
+Parthiv                                                                         
+Ashish                                                                          
+
+10 rows selected.
+
+SQL> update clmst set
+  2  ccity = 'DELHI'
+  3  where cno > 1005;
+
+4 rows updated.
+
+SQL> select cnm, ccity from clmst;
+
+CNM                       CCITY                                                 
+------------------------- ---------------                                       
+adarsh                    bhavnagar                                             
+Adarsh S. Patel           bhavnagar                                             
+Tapan                     bhavnagar                                             
+Shivang                   bhavnagar                                             
+Shivang                   bhavnagar                                             
+Hemal                     bhavnagar                                             
+Samir                     DELHI                                                 
+Pranav                    DELHI                                                 
+Parthiv                   DELHI                                                 
+Ashish                    DELHI                                                 
+
+10 rows selected.
+
+SQL> alter table clmst
+  2  add ctel number(6);
+
+Table altered.
+
+SQL> desc clmst;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNO                                                NUMBER(4)
+ CNM                                                VARCHAR2(25)
+ CADD                                               VARCHAR2(25)
+ CCITY                                              VARCHAR2(15)
+ CREGION                                            CHAR(1)
+ CPIN                                               NUMBER(6)
+ CTEL                                               NUMBER(6)
+
+SQL> update clmst
+  2  ctel=525252
+  3  ;
+ctel=525252
+    *
+ERROR at line 2:
+ORA-00971: missing SET keyword 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  update clmst set
+  2* ctel=525252
+  3  /
+
+10 rows updated.
+
+SQL> select cno,cnm,ctel from clmst;
+
+       CNO CNM                             CTEL                                 
+---------- ------------------------- ----------                                 
+      1001 adarsh                        525252                                 
+      1002 Adarsh S. Patel               525252                                 
+      1003 Tapan                         525252                                 
+      1004 Shivang                       525252                                 
+      1004 Shivang                       525252                                 
+      1004 Hemal                         525252                                 
+      1006 Samir                         525252                                 
+      1007 Pranav                        525252                                 
+      1007 Parthiv                       525252                                 
+      1009 Ashish                        525252                                 
+
+10 rows selected.
+
+SQL> select distinct cno from clmst;
+
+       CNO                                                                      
+----------                                                                      
+      1001                                                                      
+      1002                                                                      
+      1003                                                                      
+      1004                                                                      
+      1006                                                                      
+      1007                                                                      
+      1009                                                                      
+
+7 rows selected.
+
+SQL> alter table clmst
+  2  modify ctel number(20);
+
+Table altered.
+
+SQL> desc clmst;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CNO                                                NUMBER(4)
+ CNM                                                VARCHAR2(25)
+ CADD                                               VARCHAR2(25)
+ CCITY                                              VARCHAR2(15)
+ CREGION                                            CHAR(1)
+ CPIN                                               NUMBER(6)
+ CTEL                                               NUMBER(20)
+
+SQL> select cno,cnm,ccity,ctel from clmst;
+
+       CNO CNM                       CCITY                 CTEL                 
+---------- ------------------------- --------------- ----------                 
+      1001 adarsh                    bhavnagar           525252                 
+      1002 Adarsh S. Patel           bhavnagar           525252                 
+      1003 Tapan                     bhavnagar           525252                 
+      1004 Shivang                   bhavnagar           525252                 
+      1004 Shivang                   bhavnagar           525252                 
+      1004 Hemal                     bhavnagar           525252                 
+      1006 Samir                     DELHI               525252                 
+      1007 Pranav                    DELHI               525252                 
+      1007 Parthiv                   DELHI               525252                 
+      1009 Ashish                    DELHI               525252                 
+
+10 rows selected.
+
+SQL> select cno,cnm,cadd from clmst order by cno;
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1001 adarsh                    kanbiwad                                   
+      1002 Adarsh S. Patel           ghogha road                                
+      1003 Tapan                     Waghawadi road                             
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1009 Ashish                    Anannagar                                  
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select cno,cnm,cadd from clmst order by cnm
+SQL> /
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1002 Adarsh S. Patel           ghogha road                                
+      1009 Ashish                    Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1003 Tapan                     Waghawadi road                             
+      1001 adarsh                    kanbiwad                                   
+
+10 rows selected.
+
+SQL> select cno,cnm,cadd from clmst order by cadd;
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1009 Ashish                    Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1003 Tapan                     Waghawadi road                             
+      1002 Adarsh S. Patel           ghogha road                                
+      1001 adarsh                    kanbiwad                                   
+
+10 rows selected.
+
+SQL> select cno,cnm,cadd from clmst order by cnm desc;
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1001 adarsh                    kanbiwad                                   
+      1003 Tapan                     Waghawadi road                             
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1009 Ashish                    Anannagar                                  
+      1002 Adarsh S. Patel           ghogha road                                
+
+10 rows selected.
+
+SQL> select cno,cnm,cadd, ccity from clmst
+  2  where ccity like '%ro%';
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where ccity like '%bi%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where ccity like '%av%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1001 adarsh                    kanbiwad                  bhavnagar        
+      1002 Adarsh S. Patel           ghogha road               bhavnagar        
+      1003 Tapan                     Waghawadi road            bhavnagar        
+      1004 Shivang                   Anannagar                 bhavnagar        
+      1004 Shivang                   Anannagar                 bhavnagar        
+      1004 Hemal                     Anannagar                 bhavnagar        
+
+6 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cadd like '%av%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%av%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1007 Pranav                    Anannagar                 DELHI            
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%r%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1001 adarsh                    kanbiwad                  bhavnagar        
+      1002 Adarsh S. Patel           ghogha road               bhavnagar        
+      1006 Samir                     Anannagar                 DELHI            
+      1007 Pranav                    Anannagar                 DELHI            
+      1007 Parthiv                   Anannagar                 DELHI            
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%a%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1001 adarsh                    kanbiwad                  bhavnagar        
+      1002 Adarsh S. Patel           ghogha road               bhavnagar        
+      1003 Tapan                     Waghawadi road            bhavnagar        
+      1004 Shivang                   Anannagar                 bhavnagar        
+      1004 Shivang                   Anannagar                 bhavnagar        
+      1004 Hemal                     Anannagar                 bhavnagar        
+      1006 Samir                     Anannagar                 DELHI            
+      1007 Pranav                    Anannagar                 DELHI            
+      1007 Parthiv                   Anannagar                 DELHI            
+
+9 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%c%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%d%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1001 adarsh                    kanbiwad                  bhavnagar        
+      1002 Adarsh S. Patel           ghogha road               bhavnagar        
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%k%'
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%p%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1003 Tapan                     Waghawadi road            bhavnagar        
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd, ccity from clmst
+  2* where cnm like '%P%'
+SQL> /
+
+       CNO CNM                       CADD                      CCITY            
+---------- ------------------------- ------------------------- ---------------  
+      1002 Adarsh S. Patel           ghogha road               bhavnagar        
+      1007 Pranav                    Anannagar                 DELHI            
+      1007 Parthiv                   Anannagar                 DELHI            
+
+SQL> select cno,cnm,cadd from clmst
+  2  where cadd='';
+
+no rows selected
+
+SQL>  select cno,cnm,cadd from clmst;
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1001 adarsh                    kanbiwad                                   
+      1002 Adarsh S. Patel           ghogha road                                
+      1003 Tapan                     Waghawadi road                             
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1009 Ashish                    Anannagar                                  
+
+10 rows selected.
+
+SQL> update clmst
+  2  cadd = ''
+  3  where cno=1002;
+cadd = ''
+     *
+ERROR at line 2:
+ORA-00971: missing SET keyword 
+
+
+SQL> update clmst set
+  2  cadd = ''
+  3  where cno=1002;
+
+1 row updated.
+
+SQL> select cno,cnm,cadd from clmst;
+
+       CNO CNM                       CADD                                       
+---------- ------------------------- -------------------------                  
+      1001 adarsh                    kanbiwad                                   
+      1002 Adarsh S. Patel                                                      
+      1003 Tapan                     Waghawadi road                             
+      1004 Shivang                   Anannagar                                  
+      1004 Shivang                   Anannagar                                  
+      1004 Hemal                     Anannagar                                  
+      1006 Samir                     Anannagar                                  
+      1007 Pranav                    Anannagar                                  
+      1007 Parthiv                   Anannagar                                  
+      1009 Ashish                    Anannagar                                  
+
+10 rows selected.
+
+SQL> select cno,cnm,cadd,ccity from clmst
+  2  where cadd='';
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd,ccity from clmst
+  2* where cadd=' '
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd,ccity from clmst
+  2* where cadd <> ''
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd,ccity from clmst
+  2* where cadd = NULL
+SQL> /
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select cno,cnm,cadd,ccity from clmst
+  2* where cadd <> NULL
+SQL> /
+
+no rows selected
+
+SQL> create table nclmst
+  2  (select * from clmst);
+(select * from clmst)
+ *
+ERROR at line 2:
+ORA-00904: invalid column name 
+
+
+SQL> create table nclmst from clmst;
+create table nclmst from clmst
+                    *
+ERROR at line 1:
+ORA-00922: missing or invalid option 
+
+
+SQL> copy
+usage: COPY FROM <db> TO <db> <opt> <table> { (<cols>) } USING <sel>
+  <db>   : database string, e.g., scott/tiger@d:chicago-mktg
+  <opt>  : ONE of the keywords: APPEND, CREATE, INSERT or REPLACE
+  <table>: name of the destination table
+  <cols> : a comma-separated list of destination column aliases
+  <sel>  : any valid SQL SELECT statement
+A missing FROM or TO clause uses the current SQL*Plus connection.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMPLOYEE                       TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+TEMP                           TABLE                                            
+
+16 rows selected.
+
+SQL> 

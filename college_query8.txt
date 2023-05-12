@@ -1,0 +1,35 @@
+desc student_master;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_ID                                      NOT NULL VARCHAR2(6)
+ S_GENDER                                           CHAR(1)
+ S_FIRST                                            VARCHAR2(10)
+ S_MIDDLE                                           VARCHAR2(10)
+ S_LAST                                             VARCHAR2(10)
+ S_ADD1                                             VARCHAR2(20)
+ S_ADD2                                             VARCHAR2(20)
+ S_ADD3                                             VARCHAR2(20)
+ S_CITY                                             VARCHAR2(15)
+ S_STATE                                            VARCHAR2(15)
+ S_COUNTRY                                          VARCHAR2(15)
+ S_PINCODE                                          VARCHAR2(6)
+ S_EMAIL                                            VARCHAR2(30)
+ S_PHONE_R                                          VARCHAR2(15)
+ S_PHONE_M                                          VARCHAR2(10)
+ S_BIRTH_DATE                                       DATE
+ S_LAST_EDU_QUA                                     VARCHAR2(15)
+ S_LAST_EDU_PER                                     NUMBER(6,2)
+ C_ID                                               NUMBER(3)
+ S_ADMISSION_DATE                                   DATE
+
+SQL> insert into student_master
+  2  (s_id,s_gender,s_first,s_birth_date,c_id)
+  3  values
+  4  (/
+  5  
+SQL> 
+SQL> commit;
+
+Commit complete.
+
+SQL> exit

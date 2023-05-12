@@ -1,0 +1,1047 @@
+select to_char(5,000) from dual;
+
+TO                                                                              
+--                                                                              
+ 5                                                                              
+
+SQL> select to_char(510002) from dual;
+
+TO_CHA                                                                          
+------                                                                          
+510002                                                                          
+
+SQL> select to_char(17145,'Rs.99,999.99') from dual;
+select to_char(17145,'Rs.99,999.99') from dual
+                     *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> 
+SQL> select to_char(17145,'Rs99,999.99') from dual;
+select to_char(17145,'Rs99,999.99') from dual
+                     *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select to_char(17145,'99,999.99') from dual;
+
+TO_CHAR(17                                                                      
+----------                                                                      
+ 17,145.00                                                                      
+
+SQL>  select to_char(17145,'9,99,999.99') from dual;
+
+TO_CHAR(1714                                                                    
+------------                                                                    
+   17,145.00                                                                    
+
+SQL> select to_char(17145,'0,00,000.00') from dual;
+
+TO_CHAR(1714                                                                    
+------------                                                                    
+ 0,17,145.00                                                                    
+
+SQL> select to_char(17145,'$0,00,000.00') from dual;
+
+TO_CHAR(17145                                                                   
+-------------                                                                   
+ $0,17,145.00                                                                   
+
+SQL> select to_char(17145,'R0,00,000.00') from dual;
+select to_char(17145,'R0,00,000.00') from dual
+                     *
+ERROR at line 1:
+ORA-01481: invalid number format model 
+
+
+SQL> select to_date('15-jan-2008','dd-mm-yy') from dual;
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','ddd-mm-yy') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','dd-mmm-yy') from dual
+SQL> /
+select to_date('15-jan-2008','dd-mmm-yy') from dual
+                             *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','dd mmm yy') from dual
+SQL> /
+select to_date('15-jan-2008','dd mmm yy') from dual
+                             *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','dd mm yyyy') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','dd mm YYYY') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','ddTT mm YYYY') from dual
+SQL> /
+select to_date('15-jan-2008','ddTT mm YYYY') from dual
+                             *
+ERROR at line 1:
+ORA-01821: date format not recognized 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM YYYY') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM Y') from dual
+SQL> /
+select to_date('15-jan-2008','DD MM Y') from dual
+               *
+ERROR at line 1:
+ORA-01858: a non-numeric character was found where a numeric was expected 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM Y : HH : MM : SS') from dual
+SQL> /
+select to_date('15-jan-2008','DD MM Y : HH : MM : SS') from dual
+                             *
+ERROR at line 1:
+ORA-01810: format code appears twice 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM Y HH  MM  SS') from dual
+SQL> /
+select to_date('15-jan-2008','DD MM Y HH  MM  SS') from dual
+                             *
+ERROR at line 1:
+ORA-01810: format code appears twice 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM YY HH  MM  SS') from dual
+SQL> /
+select to_date('15-jan-2008','DD MM YY HH  MM  SS') from dual
+                             *
+ERROR at line 1:
+ORA-01810: format code appears twice 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','DD MM YY') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','YY') from dual
+SQL> /
+select to_date('15-jan-2008','YY') from dual
+               *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','YYYY') from dual
+SQL> /
+select to_date('15-jan-2008','YYYY') from dual
+               *
+ERROR at line 1:
+ORA-01830: date format picture ends before converting entire input string 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('15-jan-2008','MM-DD-YYYY') from dual
+SQL> /
+select to_date('15-jan-2008','MM-DD-YYYY') from dual
+               *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* select to_date('01-15-08','MM-DD-YY') from dual
+SQL> /
+
+TO_DATE('                                                                       
+---------                                                                       
+15-JAN-08                                                                       
+
+SQL> SELECT ADD_MONTHS(SYSDATE,1) FROM DUAL;
+
+ADD_MONTH                                                                       
+---------                                                                       
+25-FEB-08                                                                       
+
+SQL> SELECT LAST_DAYS(SYSDATE) FROM DUAL;
+SELECT LAST_DAYS(SYSDATE) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> SELECT LAST_DAY(SYSDATE) FROM DUAL;
+
+LAST_DAY(                                                                       
+---------                                                                       
+31-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-02-2008') FROM DUAL
+SQL> /
+SELECT LAST_DAY('01-02-2008') FROM DUAL
+                *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-FEB-2008') FROM DUAL
+SQL> /
+
+LAST_DAY(                                                                       
+---------                                                                       
+29-FEB-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-MAR-2008') FROM DUAL
+SQL> /
+
+LAST_DAY(                                                                       
+---------                                                                       
+31-MAR-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-FEB-2007') FROM DUAL
+SQL> /
+
+LAST_DAY(                                                                       
+---------                                                                       
+28-FEB-07                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-FEB-07') FROM DUAL
+SQL> /
+
+LAST_DAY(                                                                       
+---------                                                                       
+28-FEB-07                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('21-FEB-07') FROM DUAL
+SQL> /
+
+LAST_DAY(                                                                       
+---------                                                                       
+28-FEB-07                                                                       
+
+SQL> SELECT MONTH_BETWEEN(SYSDATE,'05-FEB-08') FROM DUAL;
+SELECT MONTH_BETWEEN(SYSDATE,'05-FEB-08') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MONTHS_BETWEEN(SYSDATE,'05-FEB-08') FROM DUAL
+SQL> /
+
+MONTHS_BETWEEN(SYSDATE,'05-FEB-08')                                             
+-----------------------------------                                             
+                         -.32523634                                             
+
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MONTHS_BETWEEN('05-FEB-08',SYSDATE) FROM DUAL
+SQL> /
+
+MONTHS_BETWEEN('05-FEB-08',SYSDATE)                                             
+-----------------------------------                                             
+                         .325227001                                             
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MONTHS_BETWEEN('05-FEB-08','05-JAN-08') FROM DUAL
+SQL> /
+
+MONTHS_BETWEEN('05-FEB-08','05-JAN-08')                                         
+---------------------------------------                                         
+                                      1                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MONTHS_BETWEEN('05-FEB-08','05-JAN-08') FROM DUAL
+SQL> 
+SQL> /
+
+MONTHS_BETWEEN('05-FEB-08','05-JAN-08')                                         
+---------------------------------------                                         
+                                      1                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MONTHS_BETWEEN('05-FEB-08','05-JAN-28') FROM DUAL
+SQL> /
+
+MONTHS_BETWEEN('05-FEB-08','05-JAN-28')                                         
+---------------------------------------                                         
+                                   -239                                         
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT DAYS_BETWEEN('05-FEB-08','05-JAN-28') FROM DUAL
+SQL> /
+SELECT DAYS_BETWEEN('05-FEB-08','05-JAN-28') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT DAY_BETWEEN('05-FEB-08','05-JAN-28') FROM DUAL
+SQL> /
+SELECT DAY_BETWEEN('05-FEB-08','05-JAN-28') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT DATE_DIFF('05-FEB-08','05-JAN-28') FROM DUAL
+SQL> /
+SELECT DATE_DIFF('05-FEB-08','05-JAN-28') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT DATE_DIFFERENCE('05-FEB-08','05-JAN-28') FROM DUAL
+SQL> /
+SELECT DATE_DIFFERENCE('05-FEB-08','05-JAN-28') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00904: invalid column name 
+
+
+SQL> SELECT NEXT_DAY(SYSDATE) FROM DUAL;
+SELECT NEXT_DAY(SYSDATE) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,1) FROM DUAL
+SQL> /
+
+NEXT_DAY(                                                                       
+---------                                                                       
+27-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,2) FROM DUAL
+SQL> /
+
+NEXT_DAY(                                                                       
+---------                                                                       
+28-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,50) FROM DUAL
+SQL> /
+SELECT NEXT_DAY(SYSDATE,50) FROM DUAL
+                        *
+ERROR at line 1:
+ORA-01846: not a valid day of the week 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,5) FROM DUAL
+SQL> /
+
+NEXT_DAY(                                                                       
+---------                                                                       
+31-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,6) FROM DUAL
+SQL> /
+
+NEXT_DAY(                                                                       
+---------                                                                       
+01-FEB-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,7) FROM DUAL
+SQL> /
+
+NEXT_DAY(                                                                       
+---------                                                                       
+26-JAN-08                                                                       
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,7) FROM DUAL
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NEXT_DAY(SYSDATE,8) FROM DUAL
+SQL> /
+SELECT NEXT_DAY(SYSDATE,8) FROM DUAL
+                        *
+ERROR at line 1:
+ORA-01846: not a valid day of the week 
+
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ACCOUNT                        TABLE                                            
+BONUS                          TABLE                                            
+CLMST                          TABLE                                            
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+EMP2                           TABLE                                            
+EMP3                           TABLE                                            
+EMP42                          TABLE                                            
+EMPLOYEE                       TABLE                                            
+EMP_PK                         TABLE                                            
+EMP_PK1                        TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+ITEM                           TABLE                                            
+PRODUCT                        TABLE                                            
+RECEIPT                        TABLE                                            
+SALGRADE                       TABLE                                            
+SEM1                           TABLE                                            
+SEM2                           TABLE                                            
+SEM3                           TABLE                                            
+SEM4                           TABLE                                            
+SEM5                           TABLE                                            
+SEM6                           TABLE                                            
+STD_DETAIL                     TABLE                                            
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+STD_DETAIL1                    TABLE                                            
+STD_FEE                        TABLE                                            
+STD_MASTER                     TABLE                                            
+TEMP                           TABLE                                            
+
+26 rows selected.
+
+SQL> CREATE TABLE EMP_DEF
+  2  (
+  3    ENO NUMBER(3),
+  4    GENDER CHAR DEFAULT 'M'
+  5  );
+
+Table created.
+
+SQL> INSERT INTO EMP_DEF
+  2  VALUES
+  3  (100);
+INSERT INTO EMP_DEF
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_DEF
+  2  VALUES
+  3* (100,)
+SQL> /
+(100,)
+     *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_DEF
+  2  VALUES
+  3* (100,'')
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM EMP_DEF;
+
+       ENO G                                                                    
+---------- -                                                                    
+       100                                                                      
+
+SQL> INSERT INTO EMP_DEF
+  2  (ENO)
+  3  VALUES
+  4  (200);
+
+1 row created.
+
+SQL> SELECT * FROM EMP_DEF;
+
+       ENO G                                                                    
+---------- -                                                                    
+       100                                                                      
+       200 M                                                                    
+
+SQL> INSERT INTO EMP_DEF
+  2  VALUES
+  3  (200);
+INSERT INTO EMP_DEF
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_DEF
+  2  (ENO)
+  3  VALUES
+  4* (200)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO EMP_DEF
+  2  VALUES
+  3* (200,'F')
+  4  /
+
+1 row created.
+
+SQL> SELECT * FROM EMP_DEF;
+
+       ENO G                                                                    
+---------- -                                                                    
+       100                                                                      
+       200 M                                                                    
+       200 M                                                                    
+       200 F                                                                    
+
+SQL> SELECT * FROM EMP_DEF GROUP BY GENDER;
+SELECT * FROM EMP_DEF GROUP BY GENDER
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(ENO), GENDER FROM EMP_DEF GROUP BY GENDER
+SQL> /
+
+COUNT(ENO) G                                                                    
+---------- -                                                                    
+         1 F                                                                    
+         2 M                                                                    
+         1                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(ENO), MAX(ENO) GENDER FROM EMP_DEF GROUP BY GENDER
+SQL> /
+
+COUNT(ENO)     GENDER                                                           
+---------- ----------                                                           
+         1        200                                                           
+         2        200                                                           
+         1        100                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT COUNT(ENO), MAX(ENO), GENDER FROM EMP_DEF GROUP BY GENDER
+SQL> /
+
+COUNT(ENO)   MAX(ENO) G                                                         
+---------- ---------- -                                                         
+         1        200 F                                                         
+         2        200 M                                                         
+         1        100                                                           
+
+SQL> SELECT * FROM ITEM;
+
+      I_NO    I_PRICE                                                           
+---------- ----------                                                           
+         1        500                                                           
+         5        500                                                           
+         2        500                                                           
+
+SQL> SELECT * FROM PRODUCT;
+
+no rows selected
+
+SQL> DESC PRODUCT;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ P_NO                                               NUMBER(3)
+ P_NAME                                             VARCHAR2(10)
+ P_VALUE                                            NUMBER(12)
+
+SQL> SELECT * FROM STD_DETAIL
+  2  ;
+
+      S_NO       FEES        SEM                                                
+---------- ---------- ----------                                                
+       100        200          3                                                
+
+SQL> DESC STD_DETAIL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_NO                                               NUMBER(3)
+ FEES                                               NUMBER(5)
+ SEM                                                NUMBER(1)
+
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (200,200,3);
+INSERT INTO STD_DETAIL
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C001280) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (100,200,3);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (100,300,3)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (100,100,3)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (100,100,4)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (100,200,4)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM STD_DETAIL;
+
+      S_NO       FEES        SEM                                                
+---------- ---------- ----------                                                
+       100        200          3                                                
+       100        200          3                                                
+       100        300          3                                                
+       100        100          3                                                
+       100        100          4                                                
+       100        200          4                                                
+
+6 rows selected.
+
+SQL> SELECT SUM(FEES) FROM STD_DETAIL;
+
+ SUM(FEES)                                                                      
+----------                                                                      
+      1100                                                                      
+
+SQL> SELECT SUM(FEES) FROM STD_DETAIL GROUP BY SEM;
+
+ SUM(FEES)                                                                      
+----------                                                                      
+       800                                                                      
+       300                                                                      
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SUM(FEES), SEM FROM STD_DETAIL GROUP BY SEM
+SQL> /
+
+ SUM(FEES)        SEM                                                           
+---------- ----------                                                           
+       800          3                                                           
+       300          4                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SUM(FEES), SEM FROM STD_DETAIL WHERE FEES > 100 GROUP BY SEM
+SQL> /
+
+ SUM(FEES)        SEM                                                           
+---------- ----------                                                           
+       700          3                                                           
+       200          4                                                           
+
+SQL> SELECT * FROM STD_MASTER;
+
+      S_NO S_NAME                                                               
+---------- ----------                                                           
+       100 ADARSH                                                               
+
+SQL> DESC STD_MASTER;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S_NO                                      NOT NULL NUMBER(3)
+ S_NAME                                             VARCHAR2(10)
+
+SQL> INSERT INTO STD_MASTER
+  2  VALUES
+  3  (200,'RAJ');
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_MASTER
+  2  VALUES
+  3* (300,'SHIVANG')
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM STD_MASTER;
+
+      S_NO S_NAME                                                               
+---------- ----------                                                           
+       200 RAJ                                                                  
+       100 ADARSH                                                               
+       300 SHIVANG                                                              
+
+SQL> SELECT * FROM STD_DETAIL;
+
+      S_NO       FEES        SEM                                                
+---------- ---------- ----------                                                
+       100        200          3                                                
+       100        200          3                                                
+       100        300          3                                                
+       100        100          3                                                
+       100        100          4                                                
+       100        200          4                                                
+
+6 rows selected.
+
+SQL> INSERT INTO STD_DETAIL
+  2  VALUES
+  3  (200,100,1);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (200,200,2)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (200,300,3)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO STD_DETAIL
+  2  VALUES
+  3* (200,400,4)
+SQL> /
+
+1 row created.
+
+SQL> SELECT SUM(FEES), SEM FROM STD_DETAIL GROUP BY SEM;
+
+ SUM(FEES)        SEM                                                           
+---------- ----------                                                           
+       100          1                                                           
+       200          2                                                           
+      1100          3                                                           
+       700          4                                                           
+
+SQL> SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL GROUP BY SEM, S_NO;
+
+       SEM       S_NO  SUM(FEES)                                                
+---------- ---------- ----------                                                
+         1        200        100                                                
+         2        200        200                                                
+         3        100        800                                                
+         3        200        300                                                
+         4        100        300                                                
+         4        200        400                                                
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL GROUP BY S_NO, SEM
+SQL> /
+
+       SEM       S_NO  SUM(FEES)                                                
+---------- ---------- ----------                                                
+         3        100        800                                                
+         4        100        300                                                
+         1        200        100                                                
+         2        200        200                                                
+         3        200        300                                                
+         4        200        400                                                
+
+6 rows selected.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL GROUP BY S_NO, SEM WHERE SEM=1
+SQL> /
+SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL GROUP BY S_NO, SEM WHERE SEM=1
+                                                               *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL WHERE SEM=1 GROUP BY S_NO, SEM 
+SQL> /
+
+       SEM       S_NO  SUM(FEES)                                                
+---------- ---------- ----------                                                
+         1        200        100                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, S_NO, SUM(FEES) FROM STD_DETAIL WHERE SEM=2 GROUP BY S_NO, SEM 
+SQL> /
+
+       SEM       S_NO  SUM(FEES)                                                
+---------- ---------- ----------                                                
+         2        200        200                                                
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NO, SUM(FEES) FROM STD_DETAIL WHERE SEM=2 GROUP BY S_NO 
+SQL> /
+
+      S_NO  SUM(FEES)                                                           
+---------- ----------                                                           
+       200        200                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NO, SUM(FEES) FROM STD_DETAIL WHERE SEM=3 GROUP BY S_NO 
+SQL> /
+
+      S_NO  SUM(FEES)                                                           
+---------- ----------                                                           
+       100        800                                                           
+       200        300                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT S_NO, SUM(FEES) FROM STD_DETAIL WHERE SEM=3 GROUP BY S_NO 
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=100 GROUP BY SEM
+SQL> /
+
+       SEM  SUM(FEES)                                                           
+---------- ----------                                                           
+         3        800                                                           
+         4        300                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=100 
+SQL> /
+SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=100 
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=100 
+SQL> 
+SQL> SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=100 GROUP BY SEM;
+
+       SEM  SUM(FEES)                                                           
+---------- ----------                                                           
+         3        800                                                           
+         4        300                                                           
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEM, SUM(FEES) FROM STD_DETAIL WHERE S_NO=200 GROUP BY SEM
+SQL> /
+
+       SEM  SUM(FEES)                                                           
+---------- ----------                                                           
+         1        100                                                           
+         2        200                                                           
+         3        300                                                           
+         4        400                                                           
+
+SQL> 
